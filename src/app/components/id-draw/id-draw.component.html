@@ -1,0 +1,49 @@
+<div class="flex-center h-100 w-100 card pt-3" *ngIf="numberOfLookups > 0">
+  <div class="image-holder" *ngIf="!idFront">
+    <img src="assets/id.png" class="id-image" alt="back image" width="350" />
+    <div class="data">
+      <div class="district">MURANGA EAST</div>
+      <div class="division">GIKINDU</div>
+      <div class="location">GIKINGU</div>
+      <div class="sub-location">MARIRA</div>
+      <div class="filler">897</div>
+      <div class="databinder">
+        <span id="firstline">IDKYA{{ serialNumber }}<<3981<<<<<3982 </span
+        ><br />
+        <span id="secondline">{{ secondLine }}</span
+        ><br />
+        <span id="thirdline">{{ thirdLine }}</span
+        ><br />
+      </div>
+    </div>
+  </div>
+
+  <div class="image-holder id-front" *ngIf="idFront">
+    <img
+      src="assets/idfront3.png"
+      class="id-image"
+      alt="back image"
+      width="350"
+    />
+    <div class="front-data">
+      <div class="serial-number">{{ serialNumber }}</div>
+      <div class="id-number">{{ idNumber }}</div>
+      <div class="name">{{ name }}</div>
+
+      <div class="inner-data">
+        <div class="dob">{{ dob }}</div>
+        <div class="gender">{{ gender }}</div>
+        <div class="place-of-birth">{{ placeOfBirth }}</div>
+        <div class="place-of-issue">{{ placeOfIssue }}</div>
+        <div class="date-of-issue">{{ dateOfIssue }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons-container">
+    <button class="btn btn-warning" (click)="idFront = !idFront">
+      Flip Id
+    </button>
+    <button class="btn btn-primary" (click)="goBack()">Ok</button>
+  </div>
+</div>

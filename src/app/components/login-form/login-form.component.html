@@ -1,0 +1,43 @@
+<div class="main-w3layouts wrapper">
+  <div class="main-agileinfo">
+    <div class="agileits-top">
+      <form #signUp="ngForm" (ngSubmit)="createUser(signUp)">
+        <input
+          class="text email"
+          type="email"
+          name="email"
+          ngModel
+          placeholder="Email"
+          required=""
+        />
+        <input
+          class="text"
+          type="password"
+          name="password"
+          ngModel
+          placeholder="Password"
+          required=""
+        />
+        <input
+          class="text w3lpass"
+          type="password"
+          name="password2"
+          ngModel
+          placeholder="Confirm Password"
+          required=""
+        />
+        <small class="text-danger">{{ errors }}</small>
+
+        <button type="submit" [disabled]="loading">
+          {{ loading ? "Please wait ..." : "SIGN UP" }}
+        </button>
+      </form>
+      <p>
+        Already have an Account?
+        <a routerLink="/login" style="color: blue; text-decoration: underline">
+          Login Now!</a
+        >
+      </p>
+    </div>
+  </div>
+</div>

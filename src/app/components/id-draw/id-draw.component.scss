@@ -1,0 +1,107 @@
+@font-face {
+  font-family: "data-font";
+  src: url("../../../assets/font/DataFont.eot");
+  src: url("../../../assets/font/DataFont.woff") format("woff"),
+    url("../../../assets/font/DataFont.otf") format("opentype");
+}
+
+div.data {
+  font-family: data-font;
+  text-transform: uppercase;
+  position: relative;
+  top: -200px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
+  left: 34px;
+  font-weight: bold;
+}
+.district {
+  position: relative;
+  top: 14px;
+}
+.division {
+  position: relative;
+  top: 16px;
+}
+.location {
+  position: relative;
+  top: 20px;
+}
+.sub-location {
+  position: relative;
+  top: 25px;
+}
+.filler {
+  position: relative;
+  top: 31px;
+  left: 240px;
+  font-size: 14.3px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.databinder {
+  position: relative;
+  top: 35px;
+  left: -16px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+  transform: rotate(0.4deg);
+  line-height: 20px;
+}
+
+tr:first-child {
+  text-align: left;
+}
+tr:last-child {
+  text-align: right;
+}
+
+.id-front {
+  font-size: 13px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.2);
+}
+.image-holder {
+  font-family: data-font;
+  text-transform: uppercase;
+  height: 300px;
+}
+
+.front-data {
+  position: relative;
+  top: -200px;
+}
+
+.inner-data {
+  position: relative;
+  left: 136px;
+  top: 3px;
+}
+.serial-number {
+  position: relative;
+  top: 20px;
+  left: 78px;
+  letter-spacing: 0px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.id-number {
+  position: relative;
+  top: -2px;
+  left: 240px;
+}
+.name {
+  position: relative;
+  top: 3px;
+  left: 27px;
+}
+.buttons-container {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+}
+//.buttons-container button {
+//  margin: 0 4px 0 4px;
+//}

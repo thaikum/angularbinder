@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "databinder-9f333": {
+      "hosting": {
+        "databinder": [
+          "databinder-9f333"
+        ]
+      }
+    }
+  }
+}
