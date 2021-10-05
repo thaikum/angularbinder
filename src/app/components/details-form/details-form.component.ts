@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class DetailsFormComponent implements OnInit {
   numberOfLookups = 0;
+  isAdmin = false;
   constructor(private lookupService: LookupsService, private router: Router) {
     const isLoggedIn = localStorage.getItem('dataBinderUser');
     if (!isLoggedIn) {
@@ -18,6 +19,10 @@ export class DetailsFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const currentUser = localStorage.getItem('dataBinderUser');
+
+    this.isAdmin = currentUser === 'D3YWgjH9DndDEtvBYryE1wlvrHh2';
+
     this.countLookups();
   }
   countLookups(): void {

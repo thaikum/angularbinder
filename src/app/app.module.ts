@@ -9,11 +9,12 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DetailsFormComponent } from './components/details-form/details-form.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { IdDrawComponent } from './components/id-draw/id-draw.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { MatButtonModule } from '@angular/material/button';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBJ0JiaNOWmWmMh5PRU3QpizSXX3ZQ7Ic0',
@@ -31,11 +32,11 @@ const firebaseConfig = {
     IdDrawComponent,
     LoginFormComponent,
     SignupFormComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MDBBootstrapModule.forRoot(),
     FormsModule,
 
     // firebase
@@ -43,6 +44,7 @@ const firebaseConfig = {
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

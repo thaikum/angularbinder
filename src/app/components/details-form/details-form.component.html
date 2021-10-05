@@ -1,73 +1,150 @@
 <div class="w-responsive card p-2">
-  <form #detailsForm="ngForm" action="" (ngSubmit)="submitDetails(detailsForm)" *ngIf="numberOfLookups > 0">
+  <a routerLink="/admin" *ngIf="isAdmin">Admin page</a>
+  <form
+    #detailsForm="ngForm"
+    action=""
+    (ngSubmit)="submitDetails(detailsForm)"
+    *ngIf="numberOfLookups > 0"
+  >
     <fieldset>
-      <legend>Please input all the details and ensure that there is no red mark on any input field</legend>
+      <legend>
+        Please input all the details and ensure that there is no red mark on any
+        input field
+      </legend>
       <div class="form-group row">
-        <label for="firstName"  class="col-md-2 col-form-label">First Name:</label>
+        <label for="firstName" class="col-md-2 col-form-label"
+          >First Name:</label
+        >
         <div class="col-md-10">
-          <input type="text" name="firstName" ngModel class="form-control" id="firstName" placeholder="Enter first name" required>
+          <input
+            type="text"
+            name="firstName"
+            ngModel
+            class="form-control"
+            id="firstName"
+            placeholder="Enter first name"
+            required
+          />
         </div>
       </div>
       <div class="form-group row">
-        <label for="middleName"  class="col-md-2 col-form-label">Second Name</label>
+        <label for="middleName" class="col-md-2 col-form-label"
+          >Second Name</label
+        >
         <div class="col-md-10">
-          <input type="text" name="secondName" ngModel class="form-control" id="middleName" placeholder="Middle name">
+          <input
+            type="text"
+            name="secondName"
+            ngModel
+            class="form-control"
+            id="middleName"
+            placeholder="Middle name"
+          />
         </div>
       </div>
       <div class="form-group row">
-        <label for="lastName"  class="col-md-2 col-form-label">Last Name</label>
+        <label for="lastName" class="col-md-2 col-form-label">Last Name</label>
         <div class="col-md-10">
-          <input type="text" name="lastName" ngModel class="form-control " id="lastName" placeholder="Last name" required>
+          <input
+            type="text"
+            name="lastName"
+            ngModel
+            class="form-control"
+            id="lastName"
+            placeholder="Last name"
+            required
+          />
         </div>
       </div>
       <div class="form-group row">
-        <label for="idNumber"  class="col-md-2 col-form-label">Id Number</label>
+        <label for="idNumber" class="col-md-2 col-form-label">Id Number</label>
         <div class="col-md-10">
-          <input type="text" name="idNumber" ngModel class="form-control" id="idNumber" maxlength="8" minlength="7" placeholder="Id Number" required>
-          <small id="emailHelp" class="form-text text-danger" *ngIf="detailsForm.controls['idNumber']?.errors?.minLength">
+          <input
+            type="text"
+            name="idNumber"
+            ngModel
+            class="form-control"
+            id="idNumber"
+            maxlength="8"
+            minlength="7"
+            placeholder="Id Number"
+            required
+          />
+          <small
+            id="emailHelp"
+            class="form-text text-danger"
+            *ngIf="detailsForm.controls['idNumber']?.errors?.minLength"
+          >
             please ensure that the id number is correct
           </small>
         </div>
       </div>
       <div class="form-group row">
-        <label  class="col-md-2 col-form-label">Gender:</label>
+        <label class="col-md-2 col-form-label">Gender:</label>
         <div class="col-md-10">
           <div class="form-check form-check-inline">
-            <input type="radio" class="form-check-input" id="male" name="gender" value="M" required="" ngModel>
+            <input
+              type="radio"
+              class="form-check-input"
+              id="male"
+              name="gender"
+              value="M"
+              required=""
+              ngModel
+            />
             <label class="form-check-label" for="male">Male</label>
           </div>
           <div class="form-check form-check-inline">
-            <input type="radio" class="form-check-input" id="female" name="gender" value="F" required="" ngModel>
+            <input
+              type="radio"
+              class="form-check-input"
+              id="female"
+              name="gender"
+              value="F"
+              required=""
+              ngModel
+            />
             <label class="form-check-label" for="female">Female</label>
           </div>
         </div>
-
       </div>
 
       <div class="form-group row">
         <label for="date" class="col-md-2 col-form-label">Date and time</label>
         <div class="col-md-10">
-          <input class="form-control" name="date" ngModel type="date" value="" id="date" required="">
+          <input
+            class="form-control"
+            name="date"
+            ngModel
+            type="date"
+            value=""
+            id="date"
+            required=""
+          />
         </div>
       </div>
       <div>
         <p>
-          {{detailsForm.errors}}
+          {{ detailsForm.errors }}
         </p>
       </div>
       <div class="row">
         <div class="col-10"></div>
         <div class="col-2">
-          <button type="submit" class="btn btn-primary" [disabled]="!detailsForm.valid">Submit</button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!detailsForm.valid"
+          >
+            Submit
+          </button>
         </div>
       </div>
     </fieldset>
   </form>
   <div class="flex-center" *ngIf="numberOfLookups <= 0">
     <div class="card">
-      <h1 class="text-danger">
-        Please refill your lookups
-      </h1>
+      <h1 class="text-danger">Please refill your lookups</h1>
     </div>
   </div>
 </div>

@@ -1,0 +1,42 @@
+<div class="wrapper">
+  <ol>
+    <li
+      *ngFor="let look of usersAndLookups"
+      (click)="
+        setCurrentEmail(look.email, look.lookups, look.docId);
+        showChanger = !showChanger
+      "
+    >
+      <span>{{ look.email }}: &nbsp; </span>
+      <span>{{ look.lookups }} &nbsp; </span>
+
+      <div
+        class="changer card p-3 mt-3"
+        *ngIf="currentEmail && currentEmail === look.email && showChanger"
+      >
+        <fieldset>
+          <legend>
+            <u>{{ currentEmail }}</u>
+          </legend>
+          <div>
+            <input
+              type="number"
+              #look
+              [ngModel]="currentLookup"
+              (change)="button.click()"
+            />
+          </div>
+          <div class="w-100 flex-center p-3">
+            <button
+              #button
+              class="btn btn-outline-primary"
+              (click)="updateLookups(look.value)"
+            >
+              Change
+            </button>
+          </div>
+        </fieldset>
+      </div>
+    </li>
+  </ol>
+</div>
