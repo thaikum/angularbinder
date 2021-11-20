@@ -1,374 +1,57 @@
-/*-- main --*/
-.main-w3layouts {
-  padding: 3em 0 1em;
-}
-
-.main-agileinfo {
-  width: 35%;
-  margin: 3em auto;
-  background: rgba(0, 0, 0, 0.18);
-  background-size: cover;
-}
-
-.agileits-top {
-  padding: 3em;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  font-size: 0.9em;
-  color: #fff;
-  font-weight: 100;
-  width: 94.5%;
-  display: block;
-  padding: 0.8em;
-  border: solid 1px rgba(255, 255, 255, 0.37);
-  -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #fff 4%);
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #fff 4%);
-  background-position: -800px 0;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  font-family: "Roboto", sans-serif;
-}
-
-input.email,
-input.text.w3lpass {
-  margin: 2em 0;
-}
-
-.text:focus,
-.text:valid {
-  box-shadow: none;
-  outline: none;
-  background-position: 0 0;
-}
-
-.text:focus::-webkit-input-placeholder,
-.text:valid::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9em;
-  -webkit-transform: translateY(-30px);
-  -moz-transform: translateY(-30px);
-  -o-transform: translateY(-30px);
-  -ms-transform: translateY(-30px);
-  transform: translateY(-30px);
-  visibility: visible !important;
-}
-
-::-webkit-input-placeholder {
-  color: #fff;
-  font-weight: 100;
-}
-
-:-moz-placeholder {
-  /* Firefox 18- */
-  color: #fff;
-}
-
-::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #fff;
-}
-
-:-ms-input-placeholder {
-  color: #fff;
-}
-
-button[type="submit"] {
-  font-size: 0.9em;
-  color: #fff;
-  background: #76b852;
-  outline: none;
-  border: 1px solid #76b852;
-  cursor: pointer;
-  padding: 0.9em;
-  -webkit-appearance: none;
+.card-cont {
   width: 100%;
-  margin: 2em 0;
-  letter-spacing: 4px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+mat-card {
+  min-width: 50%;
 }
 
-button[type="submit"]:hover {
-  -webkit-transition: 0.5s all;
-  -moz-transition: 0.5s all;
-  -o-transition: 0.5s all;
-  -ms-transition: 0.5s all;
-  transition: 0.5s all;
-  background: #8dc26f;
+mat-form-field {
+  display: block;
+  font-size: 1.2em;
 }
 
-.agileits-top p {
-  font-size: 1em;
-  color: #fff;
+button {
+  width: 100%;
+  font-size: 1.5em !important;
+  padding: 0.2em 0 0.2em 0;
+}
+form {
+  margin: 1.5em;
+}
+
+mat-card-header {
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  margin: 1.5em;
+}
+
+.signup-router {
+  width: 100%;
   text-align: center;
-  letter-spacing: 1px;
-  font-weight: 300;
+  margin-top: 1em;
+  font-size: 1.2em;
 }
 
-.agileits-top p a {
-  color: #fff;
-  -webkit-transition: 0.5s all;
-  -moz-transition: 0.5s all;
-  transition: 0.5s all;
-  font-weight: 400;
+.progress {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.agileits-top p a:hover {
-  color: #76b852;
-}
-
-/*-- //main --*/
-/*-- checkbox --*/
-.wthree-text label {
-  font-size: 0.9em;
-  color: #fff;
-  font-weight: 200;
-  cursor: pointer;
-  position: relative;
-}
-
-input.checkbox {
-  background: #8dc26f;
-  cursor: pointer;
-  width: 1.2em;
-  height: 1.2em;
-}
-
-@keyframes rippling {
-  50% {
-    border-left-color: #fff;
-  }
-
-  100% {
-    border-bottom-color: #fff;
-    border-left-color: #fff;
-  }
-}
-
-/*-- //checkbox --*/
-/*-- copyright --*/
-.colorlibcopy-agile {
-  margin: 2em 0 1em;
+.header {
+  width: 100%;
   text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
-.colorlibcopy-agile p {
-  font-size: 0.9em;
-  color: #fff;
-  line-height: 1.8em;
-  letter-spacing: 1px;
-  font-weight: 100;
-}
-
-.colorlibcopy-agile p a {
-  color: #fff;
-  transition: 0.5s all;
-  -webkit-transition: 0.5s all;
-  -moz-transition: 0.5s all;
-  -o-transition: 0.5s all;
-  -ms-transition: 0.5s all;
-}
-
-.colorlibcopy-agile p a:hover {
-  color: #000;
-}
-
-/*-- //copyright --*/
-.wrapper {
-  position: relative;
-  overflow: hidden;
-}
-
-@media (max-width: 900px) {
-  .main-agileinfo {
-    width: 58%;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 93%;
-  }
-}
-
-@media (max-width: 800px) {
-  h1 {
-    font-size: 2.2em;
-  }
-}
-
-@media (max-width: 736px) {
-  .main-agileinfo {
-    width: 62%;
-  }
-}
-
-@media (max-width: 667px) {
-  .main-agileinfo {
-    width: 67%;
-  }
-}
-
-@media (max-width: 600px) {
-  .agileits-top {
-    padding: 2.2em;
-  }
-
-  input.email,
-  input.text.w3lpass {
-    margin: 1.5em 0;
-  }
-
-  button[type="submit"] {
-    margin: 2em 0;
-  }
-
-  h1 {
-    font-size: 2em;
-    letter-spacing: 3px;
-  }
-}
-
-@media (max-width: 568px) {
-  .main-agileinfo {
-    width: 75%;
-  }
-
-  .colorlibcopy-agile p {
-    padding: 0 2em;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.8em;
-    letter-spacing: 3px;
-  }
-
-  .agileits-top {
-    padding: 1.8em;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 91%;
-  }
-
-  .agileits-top p {
-    font-size: 0.9em;
-  }
-}
-
-@media (max-width: 414px) {
-  h1 {
-    font-size: 1.8em;
-    letter-spacing: 2px;
-  }
-
-  .main-agileinfo {
-    width: 85%;
-    margin: 1.5em auto;
-  }
-
-  .text:focus,
-  .text:valid {
-    background-position: 0 0px;
-  }
-
-  .wthree-text ul li,
-  .wthree-text ul li:nth-child(2) {
-    display: block;
-    float: none;
-  }
-
-  .wthree-text ul li:nth-child(2) {
-    margin-top: 1.5em;
-  }
-
-  button[type="submit"] {
-    margin: 2em 0 1.5em;
-    letter-spacing: 3px;
-  }
-
-  button[type="submit"] {
-    margin: 2em 0 1.5em;
-  }
-
-  .colorlibcopy-agile {
-    margin: 1em 0 1em;
-  }
-}
-
-@media (max-width: 384px) {
-  .main-agileinfo {
-    width: 88%;
-  }
-
-  .colorlibcopy-agile p {
-    padding: 0 1em;
-  }
-}
-
-@media (max-width: 375px) {
-  .agileits-top p {
-    letter-spacing: 0px;
-  }
-}
-
-@media (max-width: 320px) {
-  .main-w3layouts {
-    padding: 1.5em 0 0;
-  }
-
-  .agileits-top {
-    padding: 1.2em;
-  }
-
-  .colorlibcopy-agile {
-    margin: 0 0 1em;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 89.5%;
-    font-size: 0.85em;
-  }
-
-  h1 {
-    font-size: 1.7em;
-    letter-spacing: 0px;
-  }
-
-  .main-agileinfo {
-    width: 92%;
-    margin: 1em auto;
-  }
-
-  .text:focus,
-  .text:valid {
-    background-position: 0 0px;
-  }
-
-  buttont[type="submit"] {
-    margin: 1.5em 0;
-    padding: 0.8em;
-    font-size: 0.85em;
-  }
-
-  .colorlibcopy-agile p {
-    font-size: 0.85em;
-  }
-
-  .wthree-text label {
-    font-size: 0.85em;
-  }
-
-  .main-w3layouts {
-    padding: 1em 0 0;
+@media screen and (max-width: 600px) {
+  mat-card {
+    width: 80%;
   }
 }

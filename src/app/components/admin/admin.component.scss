@@ -6,3 +6,22 @@ li {
   display: flex;
   flex-wrap: wrap;
 }
+mat-table {
+  width: 100%;
+  padding: 1em;
+}
+.mat-column-lookups {
+  text-align: right;
+}
+.mat-column-email {
+  padding-left: 1em;
+}
+
+.lookup-changer {
+  width: 30px;
+}
+
+.search-input {
+  padding: 3px;
+  margin: 10px 0 5px 30px;
+}

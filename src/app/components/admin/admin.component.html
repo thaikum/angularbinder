@@ -1,42 +1,124 @@
-<div class="wrapper">
-  <ol>
-    <li
-      *ngFor="let look of usersAndLookups"
-      (click)="
-        setCurrentEmail(look.email, look.lookups, look.docId);
-        showChanger = !showChanger
-      "
-    >
-      <span>{{ look.email }}: &nbsp; </span>
-      <span>{{ look.lookups }} &nbsp; </span>
+<input
+  #searcher
+  type="text"
+  placeholder="Search..."
+  class="search-input"
+  (input)="search(searcher.value)"
+/>
 
-      <div
-        class="changer card p-3 mt-3"
-        *ngIf="currentEmail && currentEmail === look.email && showChanger"
-      >
-        <fieldset>
-          <legend>
-            <u>{{ currentEmail }}</u>
-          </legend>
-          <div>
-            <input
-              type="number"
-              #look
-              [ngModel]="currentLookup"
-              (change)="button.click()"
-            />
-          </div>
-          <div class="w-100 flex-center p-3">
-            <button
-              #button
-              class="btn btn-outline-primary"
-              (click)="updateLookups(look.value)"
-            >
-              Change
-            </button>
-          </div>
-        </fieldset>
-      </div>
-    </li>
-  </ol>
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="index">
+    <th mat-header-cell *matHeaderCellDef>No</th>
+    <td mat-cell *matCellDef="let look; let i = index">{{ i + 1 }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+    <td mat-cell *matCellDef="let look">{{ look.email }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="lookups">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="">Lookups</th>
+    <td
+      mat-cell
+      *matCellDef="let look"
+      (click)="setCurrentEmail(look.email, look.lookups, look.docId)"
+    >
+      <span *ngIf="currentEmail && currentEmail === look.email && !loading">
+        <input
+          appAutoFocus
+          class="lookup-changer"
+          #lookChange
+          type="text"
+          pattern="[0-9]"
+          [value]="look.lookups"
+          (change)="updateLookups(lookChange.value)"
+        />
+
+        <button
+          mat-mini-fab
+          color="primary"
+          (click)="updateLookups(lookChange.value)"
+        >
+          <mat-icon>done</mat-icon>
+        </button>
+      </span>
+
+      <span *ngIf="currentEmail && currentEmail === look.email && loading">
+        <mat-spinner [diameter]="30"></mat-spinner>
+      </span>
+
+      <span *ngIf="!(currentEmail && currentEmail === look.email) && !loading">
+        {{ look.lookups }}
+      </span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="archive">
+    <th mat-header-cell *matHeaderCellDef>Archive</th>
+    <td mat-cell *matCellDef="let look">
+      <button mat-button (click)="archiveEmail(look.docId)">Archive</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+</mat-table>
+
+<button mat-icon-button (click)="showArchive = !showArchive">
+  {{ !showArchive ? "Show archive" : "Hide archive" }}
+  <mat-icon> {{ !showArchive ? "visibility" : "visibility_off" }}</mat-icon>
+</button>
+
+<table *ngIf="showArchive">
+  <caption>
+    <h1>Archived people</h1>
+  </caption>
+  <tr>
+    <th>No.</th>
+    <th>Email</th>
+    <th>Lookups</th>
+    <th>Un-archive</th>
+  </tr>
+
+  <tr *ngFor="let look of archivedLookups; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ look.email }}</td>
+    <td>{{ look.lookups }}</td>
+    <td>
+      <button mat-button (click)="removeFromArchive(look.docId)">
+        Un Archive
+      </button>
+    </td>
+  </tr>
+</table>
+
+<div class="management" *ngIf="isSuperAdmin">
+  <button mat-icon-button (click)="showRecent = !showRecent">
+    {{ !showRecent ? "Show Recent" : "Hide Recent" }}
+    <mat-icon> {{ !showRecent ? "visibility" : "visibility_off" }}</mat-icon>
+  </button>
+
+  <table *ngIf="showRecent">
+    <caption>
+      <h1>Recent Updates</h1>
+    </caption>
+    <tr>
+      <th>No.</th>
+      <th>Email</th>
+      <th>Change</th>
+      <th>Date</th>
+      <th>Seen</th>
+    </tr>
+
+    <tr *ngFor="let look of recentLookups; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ look.email }}</td>
+      <td>{{ look.change }}</td>
+      <td>{{ look.date.toDate() }}</td>
+      <td>
+        <button mat-button (click)="seenRecent(look.docId)">Seen</button>
+      </td>
+    </tr>
+  </table>
 </div>

@@ -42,10 +42,15 @@
     </div>
   </div>
 
-  <div class="buttons-container">
-    <button class="btn btn-warning" (click)="idFront = !idFront">
+  <div class="buttons-containe">
+    <button mat-stroked-button color="accent" (click)="idFront = !idFront">
       Flip Id
+      <mat-icon>flip</mat-icon>
     </button>
-    <button class="btn btn-primary" (click)="goBack()">Ok</button>
+    <button mat-raised-button color="primary" (click)="goBack()">
+      <mat-icon>done</mat-icon>
+
+      Ok
+    </button>
   </div>
 </div>

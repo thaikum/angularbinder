@@ -15,6 +15,20 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { AutoFocusDirective } from './directives/auto-focus.directive';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBJ0JiaNOWmWmMh5PRU3QpizSXX3ZQ7Ic0',
@@ -33,6 +47,7 @@ const firebaseConfig = {
     LoginFormComponent,
     SignupFormComponent,
     AdminComponent,
+    AutoFocusDirective,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +60,19 @@ const firebaseConfig = {
     AngularFireAuthModule, // auth
     AngularFireStorageModule,
     MatButtonModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

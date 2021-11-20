@@ -7,8 +7,17 @@ import {
 import { Observable } from 'rxjs';
 
 interface Lookups {
+  docId?: string;
   lookups: number;
   email: string;
+  archive?: boolean;
+}
+
+interface Recent {
+  docId?: string;
+  change: number;
+  email: string;
+  date: Date;
 }
 
 @Injectable({
@@ -18,6 +27,8 @@ export class LookupsService {
   private lookupDocument!: AngularFirestoreDocument<Lookups>;
   private userId = localStorage.getItem('dataBinderUser');
   private lookupCollection!: AngularFirestoreCollection<Lookups>;
+  private recentCollection!: AngularFirestoreCollection<Recent>;
+  private recentDocument!: AngularFirestoreDocument<Recent>;
   constructor(private firestore: AngularFirestore) {}
 
   // tslint:disable-next-line:typedef
@@ -53,6 +64,32 @@ export class LookupsService {
   getAllUsersLookups(): Observable<Lookups[]> {
     this.lookupCollection = this.firestore.collection('lookups');
     return this.lookupCollection.valueChanges({ idField: 'docId' });
+  }
+
+  getAllRecentUpdates(): Observable<Recent[]> {
+    this.recentCollection = this.firestore.collection('recent');
+    return this.recentCollection.valueChanges({ idField: 'docId' });
+  }
+
+  async deleteRecent(docId: string): Promise<void> {
+    this.firestore
+      .doc('recent/' + docId)
+      .delete()
+      .then();
+  }
+
+  async archiveLookup(docId: string, archive: boolean): Promise<boolean> {
+    let result = false;
+    await this.firestore
+      .doc('lookups/' + docId)
+      .update({ archive })
+      .then(() => {
+        result = true;
+      })
+      .catch((err) => {
+        throw err;
+      });
+    return result;
   }
 
   async setLookups(lookups: number, user: string): Promise<any> {

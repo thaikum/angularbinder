@@ -21,7 +21,9 @@ export class DetailsFormComponent implements OnInit {
   ngOnInit(): void {
     const currentUser = localStorage.getItem('dataBinderUser');
 
-    this.isAdmin = currentUser === 'D3YWgjH9DndDEtvBYryE1wlvrHh2';
+    this.isAdmin =
+      currentUser === 'D3YWgjH9DndDEtvBYryE1wlvrHh2' ||
+      currentUser === '63Dgz3W8SAW1ibwiOvqCXjpOJLX2';
 
     this.countLookups();
   }

@@ -20,6 +20,7 @@ export class LoginFormComponent implements OnInit {
 
   createUser(signUp: NgForm): void {
     this.loading = true;
+    this.errors = '';
     const values = signUp.value;
     if (values.password === values.password2) {
       this.authentication
@@ -39,6 +40,7 @@ export class LoginFormComponent implements OnInit {
         });
     } else {
       this.errors = 'passwords do not match';
+      this.loading = false;
     }
   }
 }

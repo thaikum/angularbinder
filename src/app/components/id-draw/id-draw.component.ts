@@ -48,8 +48,10 @@ export class IdDrawComponent implements OnInit {
     while (k--) {
       zeros += '0';
     }
+
     let secondName = this.details.secondName;
     const lastName = this.details.lastName;
+
     const dateOfBirth = this.details.date;
     const idNumber = zeros + this.details.idNumber;
     const gender = this.details.gender;

@@ -9,7 +9,7 @@ div.data {
   font-family: data-font;
   text-transform: uppercase;
   position: relative;
-  top: -200px;
+  top: -210px;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.4);
   left: 34px;
@@ -17,11 +17,11 @@ div.data {
 }
 .district {
   position: relative;
-  top: 14px;
+  top: 16px;
 }
 .division {
   position: relative;
-  top: 16px;
+  top: 17px;
 }
 .location {
   position: relative;
@@ -29,11 +29,11 @@ div.data {
 }
 .sub-location {
   position: relative;
-  top: 25px;
+  top: 20px;
 }
 .filler {
   position: relative;
-  top: 31px;
+  top: 27px;
   left: 240px;
   font-size: 14.3px;
   font-weight: 900;
@@ -67,11 +67,12 @@ tr:last-child {
   font-family: data-font;
   text-transform: uppercase;
   height: 250px;
+  //width: 350px;
 }
 
 .front-data {
   position: relative;
-  top: -209px;
+  top: -218px;
 }
 
 .inner-data {
@@ -122,13 +123,17 @@ tr:last-child {
 }
 .place-of-birth {
   position: relative;
-  top: 3px;
+  top: 1px;
 }
 .place-of-issue {
   position: relative;
-  top: 4px;
+  top: 1px;
 }
 .date-of-issue {
   position: relative;
-  top: 4px;
+  top: 1px;
+}
+
+mat-icon {
+  font-size: 20px;
 }

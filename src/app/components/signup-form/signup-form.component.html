@@ -1,36 +1,39 @@
-<div class="main-w3layouts wrapper">
-  <div class="main-agileinfo">
-    <div class="agileits-top">
+<div class="card-cont">
+  <mat-card>
+    <div class="header">LOGIN</div>
+    <mat-card-content>
       <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-        <input
-          class="text email"
-          type="email"
-          name="email"
-          ngModel
-          placeholder="Email"
-          required=""
-        />
-        <input
-          class="text"
-          type="password"
-          name="password"
-          ngModel
-          placeholder="Password"
-          required=""
-        />
-        <p class="text-danger">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="email" matInput required ngModel name="email" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input type="password" matInput required ngModel name="password" />
+        </mat-form-field>
+        <p class="mat-error">
           {{ error }}
         </p>
-        <button type="submit" [disabled]="loading">
-          {{ loading ? "Please wait ..." : "LOG IN" }}
-        </button>
-      </form>
-      <p>
-        Dont have an account?
-        <a routerLink="/signup" style="color: blue; text-decoration: underline">
-          Signup Now!</a
+
+        <button
+          *ngIf="!loading"
+          type="submit"
+          mat-flat-button
+          color="primary"
+          [disabled]="loginForm.invalid"
         >
-      </p>
-    </div>
-  </div>
+          Login
+          <mat-icon *ngIf="!loading">login</mat-icon>
+        </button>
+        <div class="progress" *ngIf="loading">
+          <mat-spinner [diameter]="30"></mat-spinner>
+        </div>
+        <p class="signup-router">
+          Don't have an account?
+          <a routerLink="/signup" mat-button color="primary"> Sign Up</a>
+        </p>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
