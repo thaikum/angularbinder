@@ -121,4 +121,15 @@
       </td>
     </tr>
   </table>
+
+  <table>
+    <tr>
+      <th>Email</th>
+      <th>Admin Type</th>
+    </tr>
+    <tr *ngFor="let admin of adminList">
+      <td>{{ admin.email }}</td>
+      <td>{{ admin.adminType }}</td>
+    </tr>
+  </table>
 </div>

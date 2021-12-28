@@ -9,6 +9,7 @@ interface Users {
   email: string;
   lookups: number;
   archive?: boolean;
+  adminType?: string;
 }
 
 @Component({
@@ -37,6 +38,9 @@ export class AdminComponent implements OnInit {
   isSuperAdmin = false;
   showRecent = false;
   recentLookups: any;
+  adminType: any;
+  adminList: Array<Users> = [];
+  editingAdmin = false;
 
   constructor(private lookupService: LookupsService, private router: Router) {}
 
@@ -55,6 +59,10 @@ export class AdminComponent implements OnInit {
     this.isSuperAdmin = currentUser === '63Dgz3W8SAW1ibwiOvqCXjpOJLX2';
     this.getLookups();
     this.getRecent();
+
+    this.lookupService.getLookups().subscribe((look) => {
+      this.adminType = look?.adminType;
+    });
   }
 
   getRecent(): void {
@@ -74,10 +82,12 @@ export class AdminComponent implements OnInit {
             email: lookup.email,
             lookups: lookup.lookups,
             archive: lookup?.archive,
+            adminType: lookup?.adminType,
           } as Users;
         });
         this.usersList = allLookups.filter((data) => !data.archive);
         this.archivedLookups = allLookups.filter((data) => data.archive);
+        this.adminList = allLookups.filter((data) => data.adminType);
 
         this.dataSource = new MatTableDataSource(this.usersList);
         this.dataSource.sort = this.sort;
@@ -88,17 +98,18 @@ export class AdminComponent implements OnInit {
     this.currentEmail = email;
     this.currentLookup = lookups;
     this.currentUser = user;
-    console.log('i was clicked');
   }
 
   updateLookups(lookup: any): void {
     this.loading = true;
-    // tslint:disable-next-line:radix
-    lookup = parseInt(lookup);
-    this.lookupService.setLookups(lookup, this.currentUser).then(() => {
-      this.currentEmail = '';
-      this.loading = false;
-    });
+    if (this.adminType.toLowerCase() === 'super') {
+      // tslint:disable-next-line:radix
+      lookup = parseInt(lookup);
+      this.lookupService.setLookups(lookup, this.currentUser).then(() => {
+        this.currentEmail = '';
+        this.loading = false;
+      });
+    }
   }
 
   search(searchText: string): void {

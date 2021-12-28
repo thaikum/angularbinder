@@ -24,6 +24,7 @@ export class IdDrawComponent implements OnInit {
   serialNumber = '';
   dob = '';
   dateOfIssue = '';
+  stripBinder = false;
 
   currentLocation: any;
 

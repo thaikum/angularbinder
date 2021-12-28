@@ -11,6 +11,7 @@ interface Lookups {
   lookups: number;
   email: string;
   archive?: boolean;
+  adminType?: string;
 }
 
 interface Recent {
@@ -28,7 +29,6 @@ export class LookupsService {
   private userId = localStorage.getItem('dataBinderUser');
   private lookupCollection!: AngularFirestoreCollection<Lookups>;
   private recentCollection!: AngularFirestoreCollection<Recent>;
-  private recentDocument!: AngularFirestoreDocument<Recent>;
   constructor(private firestore: AngularFirestore) {}
 
   // tslint:disable-next-line:typedef
@@ -56,7 +56,7 @@ export class LookupsService {
       });
   }
 
-  getLookups(): any {
+  getLookups(): Observable<Lookups | undefined> {
     this.lookupDocument = this.firestore.doc('lookups/' + this.userId);
     return this.lookupDocument.valueChanges();
   }

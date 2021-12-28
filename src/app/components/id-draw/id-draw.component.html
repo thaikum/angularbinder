@@ -1,14 +1,29 @@
 <div class="wrapper">
   <div class="center-div" *ngIf="numberOfLookups > 0">
-    <div class="image-holder" *ngIf="!idFront">
-      <img src="assets/id.png" class="id-image" alt="back image" width="350" />
-      <div class="data">
-        <div class="district">{{ currentLocation.district }}</div>
-        <div class="division">{{ currentLocation.division }}</div>
-        <div class="location">{{ currentLocation.location }}</div>
-        <div class="sub-location">{{ currentLocation.subLocation }}</div>
-        <div class="filler">897</div>
-        <div class="databinder">
+    <div class="image-holder" *ngIf="!idFront || stripBinder">
+      <img
+        src="assets/id.png"
+        class="id-image"
+        alt="back image"
+        width="350"
+        *ngIf="!stripBinder"
+      />
+
+      <div [class]="stripBinder ? 'stripdata' : 'data'">
+        <div class="district" *ngIf="!stripBinder">
+          {{ currentLocation.district }}
+        </div>
+        <div class="division" *ngIf="!stripBinder">
+          {{ currentLocation.division }}
+        </div>
+        <div class="location" *ngIf="!stripBinder">
+          {{ currentLocation.location }}
+        </div>
+        <div class="sub-location" *ngIf="!stripBinder">
+          {{ currentLocation.subLocation }}
+        </div>
+        <div class="filler" *ngIf="!stripBinder">897</div>
+        <div [class]="stripBinder ? 'stripbinder' : 'databinder'">
           <span id="firstline">IDKYA{{ serialNumber }}<<3981<<<<<3982 </span
           ><br />
           <span id="secondline">{{ secondLine }}</span
@@ -19,7 +34,7 @@
       </div>
     </div>
 
-    <div class="image-holder id-front" *ngIf="idFront">
+    <div class="image-holder id-front" *ngIf="idFront && !stripBinder">
       <img
         src="assets/idfront3.png"
         class="id-image"
@@ -43,7 +58,12 @@
   </div>
 
   <div class="buttons-containe">
-    <button mat-stroked-button color="accent" (click)="idFront = !idFront">
+    <button
+      mat-stroked-button
+      color="accent"
+      (click)="idFront = !idFront"
+      *ngIf="!stripBinder"
+    >
       Flip Id
       <mat-icon>flip</mat-icon>
     </button>
@@ -51,6 +71,9 @@
       <mat-icon>done</mat-icon>
 
       Ok
+    </button>
+    <button mat-button (click)="stripBinder = !stripBinder">
+      {{ stripBinder ? "Show id" : "Show strip binder" }}
     </button>
   </div>
 </div>
