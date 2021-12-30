@@ -4,15 +4,23 @@
   src: url("../../../assets/font/DataFont.woff") format("woff"),
     url("../../../assets/font/DataFont.otf") format("opentype");
 }
+@font-face {
+  font-family: "signature";
+  src: url("../../../assets/font/MonsieurLaDoulaise-Regular.ttf");
+}
+
+canvas {
+  font-family: signature;
+}
 
 div.data {
   font-family: data-font;
   text-transform: uppercase;
   position: relative;
-  top: -210px;
+  top: -215px;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.4);
-  left: 34px;
+  left: 31px;
   font-weight: bold;
 }
 .district {
@@ -33,21 +41,22 @@ div.data {
 }
 .filler {
   position: relative;
-  top: 27px;
-  left: 240px;
+  top: 34px;
+  left: 236px;
   font-size: 14.3px;
   font-weight: 900;
   letter-spacing: 1px;
-  color: rgba(0, 0, 0, 0.5);
+  line-height: 10px;
+  color: rgba(0, 0, 0, 0.25);
 }
 .databinder {
   position: relative;
-  top: 35px;
+  top: 45px;
   left: -15px;
   font-size: 15px;
   color: rgba(0, 0, 0, 0.5);
   letter-spacing: 1px;
-  transform: rotate(0.4deg);
+  //transform: rotate(-0.6deg);
   line-height: 20px;
 }
 
@@ -59,6 +68,7 @@ tr:last-child {
 }
 
 .id-front {
+  position: relative;
   font-size: 13px;
   font-weight: bold;
   color: rgba(49, 49, 49, 0.8);
@@ -72,7 +82,8 @@ tr:last-child {
 
 .front-data {
   position: relative;
-  top: -218px;
+  top: -214px;
+  left: -6px;
 }
 
 .inner-data {
@@ -82,7 +93,7 @@ tr:last-child {
 }
 .serial-number {
   position: relative;
-  top: 20px;
+  top: 22px;
   left: 85px;
   letter-spacing: -0.6px;
   font-size: 13px;
@@ -90,13 +101,13 @@ tr:last-child {
 }
 .id-number {
   position: relative;
-  top: 3px;
+  top: 5px;
   left: 247px;
 }
 .name {
   position: relative;
   top: 4px;
-  left: 36px;
+  left: 34px;
 }
 .buttons-container {
   width: 75%;
@@ -147,4 +158,26 @@ mat-icon {
   box-shadow: 0 0 5px black;
   padding: 10px;
   border-radius: 10px;
+}
+.female {
+  width: 105px;
+  height: 120px;
+  position: absolute;
+  left: 23px;
+  top: 85px;
+  //filter: blur(0.07em);
+}
+.back-image {
+  height: 45px;
+  width: 40px;
+  position: absolute;
+  left: 120px;
+  top: 40px;
+  filter: blur(0.02rem);
+}
+.signature {
+  height: 45px;
+  position: absolute;
+  left: 150px;
+  top: 163px;
 }

@@ -29,6 +29,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { AutoFocusDirective } from './directives/auto-focus.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { DrawSignatureDirective } from './directives/draw-signature.directive';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBJ0JiaNOWmWmMh5PRU3QpizSXX3ZQ7Ic0',
@@ -48,6 +49,7 @@ const firebaseConfig = {
     SignupFormComponent,
     AdminComponent,
     AutoFocusDirective,
+    DrawSignatureDirective,
   ],
   imports: [
     BrowserModule,

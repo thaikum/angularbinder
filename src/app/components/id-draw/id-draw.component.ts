@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LookupsService } from '../../lookups.service';
 import { Location } from '@angular/common';
@@ -14,7 +21,7 @@ export class IdDrawComponent implements OnInit {
   secondLine!: string;
   thirdLine!: string;
   numberOfLookups = 0;
-  idFront = false;
+  idFront = true;
 
   name = '';
   idNumber = '';
@@ -27,6 +34,7 @@ export class IdDrawComponent implements OnInit {
   stripBinder = false;
 
   currentLocation: any;
+  currentImage = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +44,11 @@ export class IdDrawComponent implements OnInit {
   ) {
     // @ts-ignore
     this.details = this.router.getCurrentNavigation().extras.state;
+
+    if (!this.details) {
+      router.navigate(['/']).then();
+    }
+
     this.currentLocation =
       LOCATIONS[Math.floor(Math.random() * LOCATIONS.length)];
     this.placeOfIssue = this.currentLocation.location;
@@ -63,6 +76,11 @@ export class IdDrawComponent implements OnInit {
     this.serialNumber = '24' + Math.floor(Math.random() * 90000000 + 10000000);
     const dob = dateOfBirth.split('-');
     this.dob = dob[2] + '.' + dob[1] + '.' + dob[0];
+    const rand = Math.floor(Math.random() * 9) + 1;
+    this.currentImage = gender === 'M' ? 'male' : 'female';
+    this.currentImage = 'assets/' + this.currentImage + rand + '.png';
+
+    console.log(this.currentImage);
 
     this.dateOfIssue =
       // tslint:disable-next-line:radix
@@ -102,7 +120,6 @@ export class IdDrawComponent implements OnInit {
     if (!isLoggedIn) {
       window.location.href = 'signup';
     } else {
-      console.log(this.location.getState());
       this.countLookups();
       this.detailsFiller();
       this.lookupService.decrementLookup();

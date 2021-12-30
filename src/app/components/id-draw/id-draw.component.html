@@ -1,8 +1,9 @@
 <div class="wrapper">
+  <span class="load-font"></span>
   <div class="center-div" *ngIf="numberOfLookups > 0">
     <div class="image-holder" *ngIf="!idFront || stripBinder">
       <img
-        src="assets/id.png"
+        src="assets/idback.jpeg"
         class="id-image"
         alt="back image"
         width="350"
@@ -10,6 +11,7 @@
       />
 
       <div [class]="stripBinder ? 'stripdata' : 'data'">
+        <img [src]="currentImage" alt="" class="back-image" />
         <div class="district" *ngIf="!stripBinder">
           {{ currentLocation.district }}
         </div>
@@ -36,11 +38,13 @@
 
     <div class="image-holder id-front" *ngIf="idFront && !stripBinder">
       <img
-        src="assets/idfront3.png"
+        src="../../../assets/idFront.jpg"
         class="id-image"
         alt="back image"
         width="350"
       />
+      <img [src]="this.currentImage" alt="" class="female" />
+
       <div class="front-data">
         <div class="serial-number">{{ serialNumber }}</div>
         <div class="id-number">{{ idNumber }}</div>
@@ -53,6 +57,15 @@
           <div class="place-of-issue">{{ placeOfIssue }}</div>
           <div class="date-of-issue">{{ dateOfIssue }}</div>
         </div>
+        <canvas
+          class="signature"
+          appDrawSignature
+          signatureText="{{ name }}"
+          height="50"
+          width="80"
+        >
+        </canvas>
+        <!--        <img src="/assets/signature7.png" alt="" />-->
       </div>
     </div>
   </div>
@@ -72,8 +85,7 @@
 
       Ok
     </button>
-    <button mat-button (click)="stripBinder = !stripBinder">
-      {{ stripBinder ? "Show id" : "Show strip binder" }}
-    </button>
+    <!--    <button mat-button (click)="stripBinder = !stripBinder">-->
+    <!--      {{ stripBinder ? "Show id" : "Show strip binder" }}-->
   </div>
 </div>
