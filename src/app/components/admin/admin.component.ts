@@ -83,16 +83,13 @@ export class AdminComponent implements OnInit {
         });
         console.log(this.searchText);
 
-        this.usersList = allLookups.filter((data) => {
-          return data.email
-            .toLowerCase()
-            .includes(this.searchText.toLowerCase());
-        });
+        this.usersList = allLookups;
 
         this.adminList = allLookups.filter((data) => data.adminType);
 
         this.dataSource = new MatTableDataSource(this.usersList);
         this.dataSource.sort = this.sort;
+        this.search();
       });
   }
 
@@ -114,10 +111,10 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  search(searchText: string): void {
+  search(): void {
     this.dataSource = new MatTableDataSource(
       this.usersList.filter((user) =>
-        user.email.toLowerCase().includes(searchText.toLowerCase())
+        user.email.toLowerCase().includes(this.searchText.toLowerCase())
       )
     );
   }
