@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LookupsService } from './lookups.service';
 import { AuthenticationService } from './authentication.service';
 
@@ -7,7 +7,7 @@ import { AuthenticationService } from './authentication.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(
     private lookupService: LookupsService,
     private auth: AuthenticationService
@@ -15,14 +15,19 @@ export class AppComponent {
   title = 'databinder';
   isLoggedIn = false;
   numberOfLookups = 0;
+  showProfile = false;
+  showPassword = false;
+  currentUser = '';
+  isAdmin = false;
 
   countLookups(): void {
     this.lookupService.getLookups().subscribe((lookup: any) => {
       this.numberOfLookups = lookup.lookups;
+      this.currentUser = lookup.email;
+      this.isAdmin = lookup.adminType;
     });
   }
 
-  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): void {
     const currentUser = localStorage.getItem('dataBinderUser');
     if (currentUser) {
@@ -33,7 +38,7 @@ export class AppComponent {
 
   logout(): void {
     this.auth.signOut().then(() => {
-      window.location.href = '/signup';
+      window.location.href = '/login';
     });
   }
 }

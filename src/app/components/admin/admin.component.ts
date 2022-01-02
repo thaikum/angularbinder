@@ -8,7 +8,6 @@ interface Users {
   docId: string;
   email: string;
   lookups: number;
-  archive?: boolean;
   adminType?: string;
 }
 
@@ -18,8 +17,9 @@ interface Users {
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  columnsToDisplay = ['index', 'email', 'lookups', 'archive'];
+  columnsToDisplay = ['index', 'email', 'lookups'];
   loading = false;
+  searchText = '';
 
   usersList!: Users[];
 
@@ -33,14 +33,11 @@ export class AdminComponent implements OnInit {
   currentLookup!: number;
   currentUser!: string;
   showChanger = false;
-  archivedLookups: Array<Users> = [];
-  showArchive = false;
   isSuperAdmin = false;
   showRecent = false;
   recentLookups: any;
   adminType: any;
   adminList: Array<Users> = [];
-  editingAdmin = false;
 
   constructor(private lookupService: LookupsService, private router: Router) {}
 
@@ -81,12 +78,17 @@ export class AdminComponent implements OnInit {
             docId: lookup.docId,
             email: lookup.email,
             lookups: lookup.lookups,
-            archive: lookup?.archive,
             adminType: lookup?.adminType,
           } as Users;
         });
-        this.usersList = allLookups.filter((data) => !data.archive);
-        this.archivedLookups = allLookups.filter((data) => data.archive);
+        console.log(this.searchText);
+
+        this.usersList = allLookups.filter((data) => {
+          return data.email
+            .toLowerCase()
+            .includes(this.searchText.toLowerCase());
+        });
+
         this.adminList = allLookups.filter((data) => data.adminType);
 
         this.dataSource = new MatTableDataSource(this.usersList);
@@ -118,14 +120,6 @@ export class AdminComponent implements OnInit {
         user.email.toLowerCase().includes(searchText.toLowerCase())
       )
     );
-  }
-
-  archiveEmail(docId: any): void {
-    this.lookupService.archiveLookup(docId, true).then(() => {});
-  }
-
-  removeFromArchive(docId: string): void {
-    this.lookupService.archiveLookup(docId, false).then(() => {});
   }
 
   seenRecent(docId: any): void {

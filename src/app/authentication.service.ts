@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase';
+import auth = firebase.auth;
+import User = firebase.User;
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(public auth: AngularFireAuth) {}
+  constructor(private authentication: AngularFireAuth) {}
 
   // signUp to firebase using an email and password
   async signUp(details: any): Promise<any> {
@@ -17,7 +20,7 @@ export class AuthenticationService {
       if (!email || !password) {
         throw Error('Invalid email and/or password');
       }
-      const user = await this.auth.createUserWithEmailAndPassword(
+      const user = await this.authentication.createUserWithEmailAndPassword(
         email,
         password
       );
@@ -36,7 +39,10 @@ export class AuthenticationService {
       if (!email || !password) {
         throw Error('Please fill in all fields!');
       }
-      const user = await this.auth.signInWithEmailAndPassword(email, password);
+      const user = await this.authentication.signInWithEmailAndPassword(
+        email,
+        password
+      );
       // @ts-ignore
       localStorage.setItem('dataBinderUser', user.user?.uid); // create a session in the browser
 
@@ -49,11 +55,18 @@ export class AuthenticationService {
   // signout a user
   async signOut(): Promise<boolean> {
     try {
-      await this.auth.signOut();
+      await this.authentication.signOut();
       localStorage.removeItem('dataBinderUser'); // clear the session
       return true;
     } catch (error) {
       return false;
     }
+  }
+
+  changePassword(): User | null {
+    // @ts-ignore
+    auth().currentUser.getIdToken(true).then();
+
+    return auth().currentUser;
   }
 }

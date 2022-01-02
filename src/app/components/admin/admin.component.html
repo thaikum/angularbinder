@@ -4,6 +4,7 @@
   placeholder="Search..."
   class="search-input"
   (input)="search(searcher.value)"
+  [(ngModel)]="searchText"
 />
 
 <mat-table [dataSource]="dataSource" matSort>
@@ -54,44 +55,9 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="archive">
-    <th mat-header-cell *matHeaderCellDef>Archive</th>
-    <td mat-cell *matCellDef="let look">
-      <button mat-button (click)="archiveEmail(look.docId)">Archive</button>
-    </td>
-  </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 </mat-table>
-
-<button mat-icon-button (click)="showArchive = !showArchive">
-  {{ !showArchive ? "Show archive" : "Hide archive" }}
-  <mat-icon> {{ !showArchive ? "visibility" : "visibility_off" }}</mat-icon>
-</button>
-
-<table *ngIf="showArchive">
-  <caption>
-    <h1>Archived people</h1>
-  </caption>
-  <tr>
-    <th>No.</th>
-    <th>Email</th>
-    <th>Lookups</th>
-    <th>Un-archive</th>
-  </tr>
-
-  <tr *ngFor="let look of archivedLookups; let i = index">
-    <td>{{ i + 1 }}</td>
-    <td>{{ look.email }}</td>
-    <td>{{ look.lookups }}</td>
-    <td>
-      <button mat-button (click)="removeFromArchive(look.docId)">
-        Un Archive
-      </button>
-    </td>
-  </tr>
-</table>
 
 <div class="management" *ngIf="isSuperAdmin">
   <button mat-icon-button (click)="showRecent = !showRecent">

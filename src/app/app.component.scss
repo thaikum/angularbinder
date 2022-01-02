@@ -1,7 +1,12 @@
 .spacer {
   flex: 1 1 auto;
 }
-
-mat-icon {
-  font-size: 20px;
+.logoutbtn {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.account {
+  font-size: 40px;
 }

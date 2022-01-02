@@ -5,10 +5,26 @@
   <h6 class="navbar-brand" *ngIf="!isLoggedIn">Data Binder</h6>
   <span class="spacer"></span>
   <div style="font-family: 'Monsieur La Doulaise', cursive">&nbsp;</div>
-  <button mat-button *ngIf="isLoggedIn" (click)="logout()" class="logoutbtn">
-    Logout
-    <mat-icon>logout</mat-icon>
+  <button
+    mat-icon-button
+    (click)="showProfile = !showProfile"
+    *ngIf="isLoggedIn && currentUser"
+  >
+    <mat-icon class="account">account_circle</mat-icon>
   </button>
+  <app-profile
+    *ngIf="showProfile && isLoggedIn"
+    [userEmail]="currentUser"
+    [isAdmin]="isAdmin"
+    (changePassword)="showProfile = false; showPassword = true"
+    (logout)="logout()"
+    (closeModal)="showProfile = false"
+  ></app-profile>
 </mat-toolbar>
+
+<app-change-password
+  (closeModal)="showPassword = false"
+  *ngIf="showPassword"
+></app-change-password>
 
 <router-outlet></router-outlet>
