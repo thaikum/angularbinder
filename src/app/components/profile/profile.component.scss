@@ -6,7 +6,7 @@
   z-index: 1000;
   padding: 1em 1em 3px 1em;
   border-radius: 0.5em;
-  width: auto;
+  width: 300px;
   max-width: 100%;
 
   &:after {
@@ -21,6 +21,10 @@
     border-bottom-color: #240115;
     border-width: 10px;
     margin-left: -10px;
+  }
+
+  h3 {
+    text-overflow: ellipsis;
   }
 }
 .profile-holder {

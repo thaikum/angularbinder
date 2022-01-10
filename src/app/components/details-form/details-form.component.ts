@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class DetailsFormComponent implements OnInit {
   numberOfLookups = 0;
   isAdmin = false;
+  isLoading = true;
   constructor(private lookupService: LookupsService, private router: Router) {
     const isLoggedIn = localStorage.getItem('dataBinderUser');
     if (!isLoggedIn) {
@@ -30,6 +31,7 @@ export class DetailsFormComponent implements OnInit {
   countLookups(): void {
     this.lookupService.getLookups().subscribe((lookup: any) => {
       this.numberOfLookups = lookup.lookups;
+      this.isLoading = false;
     });
   }
 

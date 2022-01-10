@@ -1,4 +1,4 @@
-<div class="cont">
+<div class="cont" *ngIf="!isLoading">
   <fieldset *ngIf="numberOfLookups > 0">
     <form
       #detailsForm="ngForm"
@@ -88,4 +88,9 @@
       <h1 class="text-danger">Please refill your lookups</h1>
     </div>
   </div>
+</div>
+
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+  <h3>Please wait ...</h3>
 </div>
