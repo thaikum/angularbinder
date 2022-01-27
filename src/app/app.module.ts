@@ -33,6 +33,8 @@ import { DrawSignatureDirective } from './directives/draw-signature.directive';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ModalDirective } from './directives/modal.directive';
+import { SingleEmailEditComponent } from './components/single-email-edit/single-email-edit.component';
+import { LongPressDirective } from './directives/long-press.directive';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBJ0JiaNOWmWmMh5PRU3QpizSXX3ZQ7Ic0',
@@ -56,6 +58,8 @@ const firebaseConfig = {
     ProfileComponent,
     ChangePasswordComponent,
     ModalDirective,
+    SingleEmailEditComponent,
+    LongPressDirective,
   ],
   imports: [
     BrowserModule,

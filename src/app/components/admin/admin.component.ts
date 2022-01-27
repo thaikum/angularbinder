@@ -122,4 +122,8 @@ export class AdminComponent implements OnInit {
   seenRecent(docId: any): void {
     this.lookupService.deleteRecent(docId).then();
   }
+
+  longPress(docId: any): void {
+    this.router.navigate(['admin/', docId]);
+  }
 }

@@ -65,7 +65,11 @@ tr:last-child {
   font-family: data-font;
   text-transform: uppercase;
   height: 250px;
-  //width: 350px;
+}
+
+.id-image {
+  box-shadow: 0 0 30px black;
+  border-radius: 10px;
 }
 
 .front-data {
@@ -108,13 +112,16 @@ tr:last-child {
 }
 .wrapper {
   //height: 500px;
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  //background-color: black;
+  background-color: black;
 }
 .center-div {
   display: flex;
@@ -141,6 +148,7 @@ mat-icon {
 
 .stripbinder {
   font-size: 15px;
+  background-color: white;
   color: rgba(0, 0, 0);
   letter-spacing: 1px;
   line-height: 18px;

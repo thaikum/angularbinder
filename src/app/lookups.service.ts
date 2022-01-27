@@ -12,6 +12,7 @@ interface Lookups {
   email: string;
   archive?: boolean;
   adminType?: string;
+  useStrip?: boolean;
 }
 
 interface Recent {
@@ -42,7 +43,7 @@ export class LookupsService {
   }
 
   decrementLookup(): any {
-    const data = this.firestore
+    this.firestore
       .doc('lookups/' + this.userId)
       .get()
       .subscribe((doc) => {
@@ -71,6 +72,11 @@ export class LookupsService {
     return this.recentCollection.valueChanges({ idField: 'docId' });
   }
 
+  getSpecificLookup(id: string): Observable<Lookups | undefined> {
+    this.lookupDocument = this.firestore.doc('lookups/' + id);
+    return this.lookupDocument.valueChanges();
+  }
+
   async deleteRecent(docId: string): Promise<void> {
     this.firestore
       .doc('recent/' + docId)
@@ -78,22 +84,7 @@ export class LookupsService {
       .then();
   }
 
-  async archiveLookup(docId: string, archive: boolean): Promise<boolean> {
-    let result = false;
-    await this.firestore
-      .doc('lookups/' + docId)
-      .update({ archive })
-      .then(() => {
-        result = true;
-      })
-      .catch((err) => {
-        throw err;
-      });
-    return result;
-  }
-
   async setLookups(lookups: number, user: string): Promise<any> {
-    console.log('lookups = ', lookups);
     await this.firestore
       .doc('lookups/' + user)
       .update({ lookups })
@@ -103,5 +94,21 @@ export class LookupsService {
       .catch((err) => {
         throw err;
       });
+  }
+
+  async updateDetails(details: object, updateUser: string): Promise<any> {
+    await this.firestore
+      .doc('lookups/' + updateUser)
+      .update(details)
+      .then(() => {
+        return true;
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.firestore.doc('lookups/' + id).delete();
   }
 }

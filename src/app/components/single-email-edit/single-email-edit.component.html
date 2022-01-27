@@ -1,0 +1,26 @@
+<div class="main">
+  <div class="email-container">
+    <span>{{ details.email }}</span>
+  </div>
+  <table>
+    <tr
+      *ngFor="let data of details | keyvalue"
+      (click)="editModeOn(data.key, data.value)"
+    >
+      <th>{{ data.key }}</th>
+      <td>{{ data.value }}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="alter" *ngIf="editMode">
+  <mat-form-field>
+    <mat-label>{{ editingKey }}</mat-label>
+    <input matInput [type]="dataType" [value]="editingValue" #input />
+  </mat-form-field>
+  <button mat-flat-button (click)="update(input.value)">Update</button>
+</div>
+
+<div class="delete">
+  <button mat-raised-button color="warn">Delete Account</button>
+</div>

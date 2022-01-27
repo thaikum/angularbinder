@@ -1,0 +1,35 @@
+.email-container {
+  text-align: center;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+table {
+  padding-top: 16px;
+}
+
+tr {
+  padding: 8px 0px 8px 4px;
+  cursor: pointer;
+}
+tr:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+th {
+  text-align: left;
+}
+
+td {
+  padding-left: 8px;
+}
+
+.alter {
+  font-size: 15px;
+  width: 300px;
+}
+
+.delete {
+  padding-top: 10px;
+}

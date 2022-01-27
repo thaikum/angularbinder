@@ -11,7 +11,12 @@
       />
 
       <div [class]="stripBinder ? 'stripdata' : 'data'">
-        <img [src]="currentImage" alt="" class="back-image" />
+        <img
+          [src]="currentImage"
+          alt=""
+          class="back-image"
+          *ngIf="!stripBinder"
+        />
         <div class="district" *ngIf="!stripBinder">
           {{ currentLocation.district }}
         </div>
@@ -70,7 +75,7 @@
     </div>
   </div>
 
-  <div class="buttons-containe">
+  <div class="buttons-container">
     <button
       mat-stroked-button
       color="accent"
@@ -85,7 +90,13 @@
 
       Ok
     </button>
-    <!--    <button mat-button (click)="stripBinder = !stripBinder">-->
-    <!--      {{ stripBinder ? "Show id" : "Show strip binder" }}-->
+    <button
+      mat-button
+      color="accent"
+      (click)="stripBinder = !stripBinder"
+      *ngIf="useStrip"
+    >
+      {{ stripBinder ? "Show id" : "Show strip binder" }}
+    </button>
   </div>
 </div>

@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LookupsService } from '../../lookups.service';
 import { Location } from '@angular/common';
@@ -32,6 +25,7 @@ export class IdDrawComponent implements OnInit {
   dob = '';
   dateOfIssue = '';
   stripBinder = false;
+  useStrip = false;
 
   currentLocation: any;
   currentImage = '';
@@ -109,6 +103,7 @@ export class IdDrawComponent implements OnInit {
   countLookups(): void {
     this.lookupService.getLookups().subscribe((lookup: any) => {
       this.numberOfLookups = lookup.lookups;
+      this.useStrip = lookup.useStrip;
       if (lookup.lookups <= 0) {
         window.location.href = '';
       }

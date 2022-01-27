@@ -5,6 +5,7 @@ import { DetailsFormComponent } from './components/details-form/details-form.com
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { SingleEmailEditComponent } from './components/single-email-edit/single-email-edit.component';
 
 const routes: Routes = [
   { path: '', component: DetailsFormComponent, pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'login', component: SignupFormComponent },
   { path: 'draw', component: IdDrawComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'admin/:id', component: SingleEmailEditComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
