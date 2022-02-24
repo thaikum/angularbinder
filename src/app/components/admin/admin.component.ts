@@ -18,6 +18,7 @@ interface Users {
 })
 export class AdminComponent implements OnInit {
   columnsToDisplay = ['index', 'email', 'lookups'];
+  adminColumns = ['index', 'email', 'lookups', 'edit'];
   loading = false;
   searchText = '';
 
@@ -54,6 +55,7 @@ export class AdminComponent implements OnInit {
     }
 
     this.isSuperAdmin = currentUser === '63Dgz3W8SAW1ibwiOvqCXjpOJLX2';
+
     this.getLookups();
     this.getRecent();
 
@@ -117,13 +119,14 @@ export class AdminComponent implements OnInit {
         user.email.toLowerCase().includes(this.searchText.toLowerCase())
       )
     );
+    this.dataSource.sort = this.sort;
   }
 
   seenRecent(docId: any): void {
     this.lookupService.deleteRecent(docId).then();
   }
 
-  longPress(docId: any): void {
+  edit(docId: any): void {
     this.router.navigate(['admin/', docId]);
   }
 }

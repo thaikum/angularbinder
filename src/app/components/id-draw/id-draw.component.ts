@@ -100,6 +100,7 @@ export class IdDrawComponent implements OnInit {
     this.thirdLine = lastLine + filler;
   }
 
+  // ensure that there are lookups before drawing an ID
   countLookups(): void {
     this.lookupService.getLookups().subscribe((lookup: any) => {
       this.numberOfLookups = lookup.lookups;
@@ -121,6 +122,7 @@ export class IdDrawComponent implements OnInit {
     }
   }
 
+  // Go back to details form
   goBack(): void {
     this.location.back();
   }

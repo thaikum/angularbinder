@@ -16,6 +16,14 @@ mat-table {
 .mat-column-email {
   padding-left: 1em;
 }
+.mat-column-edit {
+  padding-left: 1em;
+
+  mat-icon {
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
 
 .lookup-changer {
   width: 30px;

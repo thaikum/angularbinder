@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LookupsService } from '../../lookups.service';
 import { Location } from '@angular/common';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-single-email-edit',
@@ -15,11 +16,13 @@ export class SingleEmailEditComponent implements OnInit {
   editMode = false;
   editingKey!: string;
   editingValue: any;
+  error!: string;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _location: Location,
-    private _lookupService: LookupsService
+    private _lookupService: LookupsService,
+    private _http: HttpClient
   ) {}
 
   editModeOn(key: any, value: any): void {
@@ -54,8 +57,19 @@ export class SingleEmailEditComponent implements OnInit {
     });
   }
 
-  delete(): void {
-    this._lookupService.delete(this.id as string).then(() => {
+  async delete(): Promise<void> {
+    const params = new HttpParams().set('uid', this.id as string);
+
+    this._lookupService.delete(this.id as string).then(async () => {
+      const response = await this._http.post<string>(
+        'https://us-central1-databinder-9f333.cloudfunctions.net/deleteUser',
+        params
+      );
+
+      response.subscribe((data) => {
+        this.error = data;
+      });
+
       this._location.back();
     });
   }

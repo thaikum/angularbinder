@@ -14,18 +14,13 @@
 
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-    <td
-      mat-cell
-      *matCellDef="let look"
-      OnLongPress
-      (longPressed)="longPress(look.docId)"
-    >
+    <td mat-cell *matCellDef="let look">
       {{ look.email }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="lookups">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header="">Lookups</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Lookups</th>
     <td
       mat-cell
       *matCellDef="let look"
@@ -61,8 +56,24 @@
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef>Edit</th>
+    <td mat-cell *matCellDef="let look">
+      <mat-icon (click)="edit(look.docId)">edit</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr
+    mat-header-row
+    *matHeaderRowDef="isSuperAdmin ? adminColumns : columnsToDisplay"
+  ></tr>
+  <tr
+    mat-row
+    *matRowDef="
+      let myRowData;
+      columns: isSuperAdmin ? adminColumns : columnsToDisplay
+    "
+  ></tr>
 </mat-table>
 
 <div class="management" *ngIf="isSuperAdmin">
