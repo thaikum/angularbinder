@@ -8,7 +8,8 @@ div.data {
   position: relative;
   top: -215px;
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration-thickness: 25px;
   left: 31px;
   font-weight: bold;
 }
@@ -43,9 +44,9 @@ div.data {
   top: 45px;
   left: -15px;
   font-size: 15px;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.7);
   letter-spacing: 1px;
-  line-height: 20px;
+  line-height: 18px;
 }
 
 tr:first-child {
@@ -58,8 +59,8 @@ tr:last-child {
 .id-front {
   position: relative;
   font-size: 13px;
-  font-weight: bold;
-  color: rgba(49, 49, 49, 0.8);
+  font-weight: bolder;
+  color: rgba(49, 49, 49, 0.9);
 }
 .image-holder {
   font-family: data-font;
