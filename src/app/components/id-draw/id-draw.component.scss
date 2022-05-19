@@ -1,183 +1,23 @@
-canvas {
-  font-family: signature;
-}
-
-div.data {
-  font-family: data-font;
-  text-transform: uppercase;
-  position: relative;
-  top: -215px;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration-thickness: 25px;
-  left: 31px;
-  font-weight: bold;
-}
-.district {
-  position: relative;
-  top: 16px;
-}
-.division {
-  position: relative;
-  top: 17px;
-}
-.location {
-  position: relative;
-  top: 20px;
-}
-.sub-location {
-  position: relative;
-  top: 20px;
-}
-.filler {
-  position: relative;
-  top: 34px;
-  left: 236px;
-  font-size: 14.3px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  line-height: 10px;
-  color: rgba(0, 0, 0, 0.25);
-}
-.databinder {
-  position: relative;
-  top: 45px;
-  left: -15px;
-  font-size: 15px;
-  color: rgba(0, 0, 0, 0.7);
-  letter-spacing: 1px;
-  line-height: 18px;
-}
-
-tr:first-child {
-  text-align: left;
-}
-tr:last-child {
-  text-align: right;
-}
-
-.id-front {
-  position: relative;
-  font-size: 13px;
-  font-weight: bolder;
-  color: rgba(0, 0, 0, 0.9);
-}
-.image-holder {
-  font-family: data-font;
-  text-transform: uppercase;
-  height: 250px;
-}
-
-.id-image {
-  box-shadow: 0 0 30px black;
-  border-radius: 10px;
-}
-
-.front-data {
-  position: relative;
-  top: -214px;
-  left: -2px;
-  font-weight: bold;
-}
-
-.inner-data {
-  position: relative;
-  left: 142px;
-  top: 4px;
-}
-.serial-number {
-  position: relative;
-  top: 22px;
-  left: 83px;
-  letter-spacing: -0.6px;
-  font-size: 13px;
-  font-weight: 600;
-}
-.id-number {
-  position: relative;
-  top: 5px;
-  left: 245px;
-}
-.name {
-  position: relative;
-  top: 4px;
-  left: 34px;
-}
-.buttons-container {
-  width: 75%;
-  height: 6%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 20px;
-}
 .wrapper {
-  //height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   position: fixed;
   top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: black;
+  width: 100%;
+  height: 600px;
+  overflow: auto;
 }
-.center-div {
+.button-holder {
   display: flex;
-  flex-direction: column;
-  height: 90%;
-  justify-content: center;
+  justify-content: space-around;
+  min-width: 200px;
 }
-.place-of-birth {
-  position: relative;
-  top: -3px;
-}
-.place-of-issue {
-  position: relative;
-  top: -4px;
-}
-.date-of-issue {
-  position: relative;
-  top: 1px;
-}
-
-mat-icon {
-  font-size: 20px;
-}
-
-.stripbinder {
-  font-size: 15px;
-  background-color: white;
-  color: rgba(0, 0, 0);
-  letter-spacing: 1px;
-  line-height: 18px;
-  font-weight: bold;
-  box-shadow: 0 0 5px black;
-  padding: 10px;
-  border-radius: 10px;
-}
-.female {
-  width: 105px;
-  height: 120px;
-  position: absolute;
-  left: 23px;
-  top: 85px;
-  //filter: blur(0.07em);
-}
-.back-image {
-  height: 45px;
-  width: 40px;
-  position: absolute;
-  left: 120px;
-  top: 40px;
-  filter: blur(0.02rem);
-}
-.signature {
-  height: 45px;
-  position: absolute;
-  left: 150px;
-  top: 163px;
+.canvas-holder {
+  width: 400px;
+  height: 75%;
+  display: grid;
+  place-items: center;
 }

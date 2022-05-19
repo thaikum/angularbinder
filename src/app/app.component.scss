@@ -7,11 +7,19 @@
   src: url("../assets/font/DataFont.woff") format("woff");
 }
 
+@font-face {
+  font-family: signature;
+  src: url("../assets/font/signature.woff") format("woff");
+}
+
 .font-loader {
   font-family: data-font;
 }
 .font2-loader {
   font-family: binder-font;
+}
+.sig-font-loader {
+  font-family: signature;
 }
 
 .spacer {

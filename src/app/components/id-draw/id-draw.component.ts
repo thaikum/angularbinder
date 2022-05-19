@@ -25,9 +25,9 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     // @ts-ignore
     this.details = this.router.getCurrentNavigation().extras.state;
 
-    // if (!this.details) {
-    //   router.navigate(['/']).then();
-    // }
+    if (!this.details) {
+      router.navigate(['/']).then();
+    }
 
     this.currentLocation =
       LOCATIONS[Math.floor(Math.random() * LOCATIONS.length)];
@@ -38,7 +38,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
   secondLine!: string;
   thirdLine!: string;
   numberOfLookups = 0;
-  idFront = true;
+  idFront = false;
 
   @ViewChild('canvas') idCanvas!: ElementRef;
   @ViewChild('image') myImage!: ElementRef;
@@ -51,7 +51,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
   serialNumber = '';
   dob = '';
   dateOfIssue = '';
-  stripBinder = false;
+  // stripBinder = false;
   useStrip = false;
   tFiller!: number;
 
@@ -61,39 +61,29 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
   @ViewChild('trial') div!: ElementRef;
 
   detailsFiller(): void {
-    // const firstName = this.details.firstName;
-    // let k = 8 - this.details.idNumber.length;
-    // let zeros = '';
-    // while (k--) {
-    //   zeros += '0';
-    // }
-    //
-    // let secondName = this.details.secondName;
-    // const lastName = this.details.lastName;
-    //
-    // const dateOfBirth = this.details.date;
-    // const idNumber = zeros + this.details.idNumber;
-    // const gender = this.details.gender;
-    this.tFiller = Math.floor(Math.random() * 1000);
+    const firstName = this.details.firstName;
+    let k = 8 - this.details.idNumber.length;
+    let zeros = '';
+    while (k--) {
+      zeros += '0';
+    }
 
-    const firstName = 'fredrick';
-    const idNumber = 35604512;
-    const secondName = 'maina';
-    const lastName = 'thaiku';
-    // const gender = 'Male';
-    this.idNumber = '35604512';
-    this.gender = 'M';
-    const dateOfBirth = '1998-10-20';
-    this.currentImage = 'male';
+    let secondName = this.details.secondName;
+    const lastName = this.details.lastName;
+
+    const dateOfBirth = this.details.date;
+    const idNumber = zeros + this.details.idNumber;
+    const gender = this.details.gender;
+    this.tFiller = Math.floor(Math.random() * 900) + 100;
 
     this.name = firstName + ' ' + secondName + ' ' + lastName;
-    // this.idNumber = this.details.idNumber;
-    // this.gender = gender === 'M' ? 'Male' : 'Female';
-    this.serialNumber = '24' + Math.floor(Math.random() * 90000000 + 10000000);
+    this.idNumber = this.details.idNumber;
+    this.gender = gender === 'M' ? 'Male' : 'Female';
+    this.serialNumber = '24' + Math.floor(Math.random() * 9000000 + 1000000);
     const dob = dateOfBirth.split('-');
     this.dob = dob[2] + '.' + dob[1] + '.' + dob[0];
     const rand = Math.floor(Math.random() * 9) + 1;
-    // this.currentImage = gender === 'M' ? 'male' : 'female';
+    this.currentImage = gender === 'M' ? 'male' : 'female';
     this.currentImage = 'assets/' + this.currentImage + rand + '.png';
 
     console.log(this.currentImage);
@@ -103,7 +93,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
       dob[2] + '.' + dob[1] + '.' + (parseInt(dob[0]) + 19).valueOf();
 
     this.secondLine =
-      dob[0].valueOf().substr(2, 2) + dob[1] + dob[2] + '0' + this.gender;
+      dob[0].valueOf().substr(2, 2) + dob[1] + dob[2] + '0' + gender;
     if (this.idNumber.length === 8 && this.idNumber[0] !== '0') {
       const id = dob[0].valueOf() === '2000' ? '7' : dob[0].valueOf()[0];
       this.secondLine += '1702150<B0' + idNumber + 'M<<' + id;
@@ -111,7 +101,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
       this.secondLine += '1702150<B00' + idNumber + 'M<<';
     }
 
-    // secondName = secondName === '' ? ' ' : secondName;
+    secondName = secondName === '' ? ' ' : secondName;
 
     const lastLine = firstName + '<' + secondName + '<' + lastName;
     let lessThan = 30 - lastLine.length;
@@ -134,20 +124,17 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.detailsFiller();
-    // const isLoggedIn = localStorage.getItem('dataBinderUser');
-    // if (!isLoggedIn) {
-    //   window.location.href = 'signup';
-    // } else {
-    //   // this.countLookups();
-    //   // this.detailsFiller();
-    //   // this.lookupService.decrementLookup();
-    //   this.drawId();
-    // }
+    const isLoggedIn = localStorage.getItem('dataBinderUser');
+    if (!isLoggedIn) {
+      window.location.href = 'signup';
+    } else {
+      this.countLookups();
+      this.detailsFiller();
+      this.lookupService.decrementLookup();
+    }
   }
 
   ngAfterViewInit(): void {
-    // this.drawFrontId();
     this.drawBackId();
   }
 
@@ -165,20 +152,21 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     // this.div.nativeElement.appendChild(image);
 
     if (!!ctx) {
+      ctx.rotate(0);
+
       // clear the canvas first
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // ctx.clearRect(0, 0, canvas.width, canvas.height);
       image.onload = () => {
         ctx.drawImage(image, 0, 0, 394.633, 250);
-        ctx.font = 'ultra-condensed 800 13px data-font';
-        // ctx.fillStyle = 'rgba(0,0,0,0.9)';
+        ctx.font = 'ultra-condensed 800 14px data-font';
 
         // serial Number
         ctx.fillText(this.serialNumber, 92, 55);
 
         // ID number
-        ctx.fillText(this.idNumber, 270, 57);
+        ctx.fillText(this.details.idNumber, 270, 57);
 
         // name
         ctx.fillText(this.name.toUpperCase(), 35, 80);
@@ -187,7 +175,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
         ctx.fillText(this.dob, 157, 101);
 
         // sex
-        ctx.fillText(this.gender, 157, 123);
+        ctx.fillText(this.gender.toUpperCase(), 157, 123);
 
         // distict
         ctx.fillText(this.placeOfBirth.toUpperCase(), 157, 145);
@@ -199,7 +187,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
         ctx.fillText(this.dateOfIssue, 157, 188);
 
         // signature
-        ctx.font = 'bold 15px signature';
+        ctx.font = 'bold 20px signature';
         ctx.fillText(this.name.split(' ')[0], 170, 226);
 
         // person image
@@ -207,8 +195,9 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
         frontImage.src = this.currentImage;
 
         frontImage.onload = () => {
-          ctx.drawImage(frontImage, 40, 100, 110, 125);
+          ctx.drawImage(frontImage, 40, 95, 110, 130);
         };
+        ctx.save();
       };
       console.log('i drew');
     }
@@ -224,13 +213,16 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     // this.div.nativeElement.appendChild(image);
 
     if (!!ctx) {
+      ctx.rotate(0);
+
       // clear the canvas first
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // draw id shell
       image.onload = () => {
         ctx.drawImage(image, 0, 0, 394.633, 250);
-        ctx.font = 'ultra-condensed 800 13px data-font';
+        ctx.font = 'ultra-condensed 900 13px data-font';
+        ctx.save();
 
         // district
         ctx.fillText(this.currentLocation.district.toUpperCase(), 45, 56);
@@ -244,18 +236,46 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
         // sub-location
         ctx.fillText(this.currentLocation.subLocation.toUpperCase(), 45, 121);
 
+        // back image
+        const backImage = new Image();
+        backImage.src = this.currentImage;
+
+        backImage.onload = () => {
+          ctx.drawImage(backImage, 163, 53, 55, 65);
+        };
+
         // t-filler
         ctx.font = 'ultra-condensed 800 15px data-font';
         ctx.fillText(String(this.tFiller), 348, 146);
 
         // binder
-        ctx.rotate(-Math.PI / 120);
+        // rotate for the text to align with the image
+        ctx.rotate(-Math.PI / 200);
         ctx.font = 'ultra-expanded 800 16px binder-font';
 
         // first line
-        ctx.fillText(this.secondLine, 20, 190);
+        const num = Math.floor(Math.random() * 10);
+        const firstLine = 'IDKYA' + this.serialNumber + num + '<<3981<<<<<3982';
+        ctx.fillText(firstLine, 18, 186);
+
+        // second line
+        ctx.fillText(this.secondLine.toUpperCase(), 18, 207);
+
+        // third line
+        ctx.fillText(this.thirdLine.toUpperCase(), 18, 228);
+
         ctx.restore();
       };
+    }
+  }
+
+  flipId(): void {
+    this.idFront = !this.idFront;
+
+    if (this.idFront) {
+      this.drawFrontId();
+    } else {
+      this.drawBackId();
     }
   }
 }
