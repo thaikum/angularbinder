@@ -1,102 +1,20 @@
-<div class="wrapper">
-  <span class="load-font"></span>
-  <div class="center-div" *ngIf="numberOfLookups > 0">
-    <div class="image-holder" *ngIf="!idFront || stripBinder">
-      <img
-        src="assets/idback.jpeg"
-        class="id-image"
-        alt="back image"
-        width="350"
-        *ngIf="!stripBinder"
-      />
-
-      <div [class]="stripBinder ? 'stripdata' : 'data'">
-        <img
-          [src]="currentImage"
-          alt=""
-          class="back-image"
-          *ngIf="!stripBinder"
-        />
-        <div class="district" *ngIf="!stripBinder">
-          {{ currentLocation.district }}
-        </div>
-        <div class="division" *ngIf="!stripBinder">
-          {{ currentLocation.division }}
-        </div>
-        <div class="location" *ngIf="!stripBinder">
-          {{ currentLocation.location }}
-        </div>
-        <div class="sub-location" *ngIf="!stripBinder">
-          {{ currentLocation.subLocation }}
-        </div>
-        <div class="filler" *ngIf="!stripBinder">897</div>
-        <div [class]="stripBinder ? 'stripbinder' : 'databinder'">
-          <span id="firstline">IDKYA{{ serialNumber }}<<3981<<<<<3982 </span
-          ><br />
-          <span id="secondline">{{ secondLine }}</span
-          ><br />
-          <span id="thirdline">{{ thirdLine }}</span
-          ><br />
-        </div>
-      </div>
-    </div>
-
-    <div class="image-holder id-front" *ngIf="idFront && !stripBinder">
-      <img
-        src="../../../assets/idFront.jpg"
-        class="id-image"
-        alt="back image"
-        width="350"
-      />
-      <img [src]="this.currentImage" alt="" class="female" />
-
-      <div class="front-data">
-        <div class="serial-number">{{ serialNumber }}</div>
-        <div class="id-number">{{ idNumber }}</div>
-        <div class="name">{{ name }}</div>
-
-        <div class="inner-data">
-          <div class="dob">{{ dob }}</div>
-          <div class="gender">{{ gender }}</div>
-          <div class="place-of-birth">{{ placeOfBirth }}</div>
-          <div class="place-of-issue">{{ placeOfIssue }}</div>
-          <div class="date-of-issue">{{ dateOfIssue }}</div>
-        </div>
-        <canvas
-          class="signature"
-          appDrawSignature
-          signatureText="{{ name }}"
-          height="50"
-          width="80"
-        >
-        </canvas>
-        <!--        <img src="/assets/signature7.png" alt="" />-->
-      </div>
-    </div>
-  </div>
-
-  <div class="buttons-container">
-    <button
-      mat-stroked-button
-      color="accent"
-      (click)="idFront = !idFront"
-      *ngIf="!stripBinder"
-    >
-      Flip Id
-      <mat-icon>flip</mat-icon>
-    </button>
-    <button mat-raised-button color="primary" (click)="goBack()">
-      <mat-icon>done</mat-icon>
-
-      Ok
-    </button>
-    <button
-      mat-button
-      color="accent"
-      (click)="stripBinder = !stripBinder"
-      *ngIf="useStrip"
-    >
-      {{ stripBinder ? "Show id" : "Show strip binder" }}
-    </button>
-  </div>
+<div class="wrapper-">
+  <canvas class="idCanvas" #canvas width="394.633" height="250"></canvas>
 </div>
+
+<div
+  #trial
+  style="
+    font-family: data-font;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+  "
+>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate in<br />
+  laboriosam minima neque numquam, quo vel. Beatae distinctio esse impedit,<br />
+  maiores maxime omnis placeat quas, repudiandae sapiente sed tenetur,<br />
+  voluptatibus!
+</div>
+
+<img #image src="../../../assets/idFront.png" alt="" height="250px" />

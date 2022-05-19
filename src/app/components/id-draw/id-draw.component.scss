@@ -60,7 +60,7 @@ tr:last-child {
   position: relative;
   font-size: 13px;
   font-weight: bolder;
-  color: rgba(49, 49, 49, 0.9);
+  color: rgba(0, 0, 0, 0.9);
 }
 .image-holder {
   font-family: data-font;
@@ -76,18 +76,19 @@ tr:last-child {
 .front-data {
   position: relative;
   top: -214px;
-  left: -6px;
+  left: -2px;
+  font-weight: bold;
 }
 
 .inner-data {
   position: relative;
-  left: 145px;
+  left: 142px;
   top: 4px;
 }
 .serial-number {
   position: relative;
   top: 22px;
-  left: 85px;
+  left: 83px;
   letter-spacing: -0.6px;
   font-size: 13px;
   font-weight: 600;
@@ -95,7 +96,7 @@ tr:last-child {
 .id-number {
   position: relative;
   top: 5px;
-  left: 247px;
+  left: 245px;
 }
 .name {
   position: relative;
@@ -132,11 +133,11 @@ tr:last-child {
 }
 .place-of-birth {
   position: relative;
-  top: 1px;
+  top: -3px;
 }
 .place-of-issue {
   position: relative;
-  top: 1px;
+  top: -4px;
 }
 .date-of-issue {
   position: relative;
