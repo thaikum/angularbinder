@@ -2,9 +2,16 @@
   font-family: "data-font";
   src: url("../assets/font/OCRBBecker.woff") format("woff");
 }
+@font-face {
+  font-family: "binder-font";
+  src: url("../assets/font/DataFont.woff") format("woff");
+}
 
 .font-loader {
   font-family: data-font;
+}
+.font2-loader {
+  font-family: binder-font;
 }
 
 .spacer {

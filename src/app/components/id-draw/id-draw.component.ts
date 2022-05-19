@@ -53,6 +53,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
   dateOfIssue = '';
   stripBinder = false;
   useStrip = false;
+  tFiller!: number;
 
   currentLocation: any;
   currentImage = '';
@@ -73,6 +74,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     // const dateOfBirth = this.details.date;
     // const idNumber = zeros + this.details.idNumber;
     // const gender = this.details.gender;
+    this.tFiller = Math.floor(Math.random() * 1000);
 
     const firstName = 'fredrick';
     const idNumber = 35604512;
@@ -243,7 +245,16 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
         ctx.fillText(this.currentLocation.subLocation.toUpperCase(), 45, 121);
 
         // t-filler
-        ctx.fillText(this.detailsFiller());
+        ctx.font = 'ultra-condensed 800 15px data-font';
+        ctx.fillText(String(this.tFiller), 348, 146);
+
+        // binder
+        ctx.rotate(-Math.PI / 120);
+        ctx.font = 'ultra-expanded 800 16px binder-font';
+
+        // first line
+        ctx.fillText(this.secondLine, 20, 190);
+        ctx.restore();
       };
     }
   }
