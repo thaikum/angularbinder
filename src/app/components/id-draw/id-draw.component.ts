@@ -159,43 +159,43 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
 
       // ctx.clearRect(0, 0, canvas.width, canvas.height);
       image.onload = () => {
-        ctx.drawImage(image, 0, 0, 394.633, 250);
+        ctx.drawImage(image, 0, 0, 370, 245);
         ctx.font = 'ultra-condensed 800 14px data-font';
 
         // serial Number
-        ctx.fillText(this.serialNumber, 92, 55);
+        ctx.fillText(this.serialNumber, 90, 55);
 
         // ID number
-        ctx.fillText(this.details.idNumber, 270, 57);
+        ctx.fillText(this.details.idNumber, 263, 57);
 
         // name
         ctx.fillText(this.name.toUpperCase(), 35, 80);
 
         // D.O.B
-        ctx.fillText(this.dob, 157, 101);
+        ctx.fillText(this.dob, 150, 100);
 
         // sex
-        ctx.fillText(this.gender.toUpperCase(), 157, 123);
+        ctx.fillText(this.gender.toUpperCase(), 150, 122);
 
         // distict
-        ctx.fillText(this.placeOfBirth.toUpperCase(), 157, 145);
+        ctx.fillText(this.placeOfBirth.toUpperCase(), 150, 144);
 
         // place of issue
-        ctx.fillText(this.placeOfIssue.toUpperCase(), 157, 166);
+        ctx.fillText(this.placeOfIssue.toUpperCase(), 150, 165);
 
         // date of issue
-        ctx.fillText(this.dateOfIssue, 157, 188);
+        ctx.fillText(this.dateOfIssue, 150, 187);
 
         // signature
         ctx.font = 'bold 20px signature';
-        ctx.fillText(this.name.split(' ')[0], 170, 226);
+        ctx.fillText(this.name.split(' ')[0], 170, 224);
 
         // person image
         const frontImage = new Image();
         frontImage.src = this.currentImage;
 
         frontImage.onload = () => {
-          ctx.drawImage(frontImage, 40, 95, 110, 130);
+          ctx.drawImage(frontImage, 37, 93, 110, 130);
         };
         ctx.save();
       };
@@ -220,49 +220,49 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
 
       // draw id shell
       image.onload = () => {
-        ctx.drawImage(image, 0, 0, 394.633, 250);
+        ctx.drawImage(image, 0, 0, 370, 245);
         ctx.font = 'ultra-condensed 900 13px data-font';
         ctx.save();
 
         // district
-        ctx.fillText(this.currentLocation.district.toUpperCase(), 45, 56);
+        ctx.fillText(this.currentLocation.district.toUpperCase(), 43, 55);
 
         // division
-        ctx.fillText(this.currentLocation.division.toUpperCase(), 45, 78);
+        ctx.fillText(this.currentLocation.division.toUpperCase(), 43, 77);
 
         // location
-        ctx.fillText(this.currentLocation.location.toUpperCase(), 45, 99);
+        ctx.fillText(this.currentLocation.location.toUpperCase(), 43, 98);
 
         // sub-location
-        ctx.fillText(this.currentLocation.subLocation.toUpperCase(), 45, 121);
+        ctx.fillText(this.currentLocation.subLocation.toUpperCase(), 43, 120);
 
         // back image
         const backImage = new Image();
         backImage.src = this.currentImage;
 
         backImage.onload = () => {
-          ctx.drawImage(backImage, 163, 53, 55, 65);
+          ctx.drawImage(backImage, 161, 52, 55, 65);
         };
 
         // t-filler
         ctx.font = 'ultra-condensed 800 15px data-font';
-        ctx.fillText(String(this.tFiller), 348, 146);
+        ctx.fillText(String(this.tFiller), 327, 144);
 
         // binder
         // rotate for the text to align with the image
         ctx.rotate(-Math.PI / 200);
-        ctx.font = 'ultra-expanded 800 16px binder-font';
+        ctx.font = 'ultra-expanded 800 15px binder-font';
 
         // first line
         const num = Math.floor(Math.random() * 10);
         const firstLine = 'IDKYA' + this.serialNumber + num + '<<3981<<<<<3982';
-        ctx.fillText(firstLine, 18, 186);
+        ctx.fillText(firstLine, 18, 184);
 
         // second line
-        ctx.fillText(this.secondLine.toUpperCase(), 18, 207);
+        ctx.fillText(this.secondLine.toUpperCase(), 18, 205);
 
         // third line
-        ctx.fillText(this.thirdLine.toUpperCase(), 18, 228);
+        ctx.fillText(this.thirdLine.toUpperCase(), 18, 226);
 
         ctx.restore();
       };
