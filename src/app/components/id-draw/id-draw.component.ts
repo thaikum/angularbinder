@@ -142,6 +142,8 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
   goBack(): void {
     this.location.back();
   }
+
+  // draw the front side of the ID using HTML canvas
   drawFrontId(): void {
     const canvas = this.idCanvas.nativeElement as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
@@ -177,7 +179,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
         // sex
         ctx.fillText(this.gender.toUpperCase(), 150, 122);
 
-        // distict
+        // district
         ctx.fillText(this.placeOfBirth.toUpperCase(), 150, 144);
 
         // place of issue
@@ -203,6 +205,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // draw the back side of the ID
   drawBackId(): void {
     const canvas = this.idCanvas.nativeElement as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
