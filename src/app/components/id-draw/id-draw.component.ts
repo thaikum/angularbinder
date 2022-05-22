@@ -39,9 +39,18 @@ export class IdDrawComponent implements OnInit {
     // @ts-ignore
     this.details = this.router.getCurrentNavigation().extras.state;
 
-    if (!this.details) {
-      router.navigate(['/']).then();
-    }
+    this.details = {
+      firstName: 'fredric',
+      secondName: 'maina',
+      lastName: 'thaiku',
+      gender: 'M',
+      date: '1998-10-20',
+      idNumber: '35604512',
+    };
+
+    // if (!this.details) {
+    //   router.navigate(['/']).then();
+    // }
 
     this.currentLocation =
       LOCATIONS[Math.floor(Math.random() * LOCATIONS.length)];
