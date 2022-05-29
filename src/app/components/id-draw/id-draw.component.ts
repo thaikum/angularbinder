@@ -25,14 +25,14 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     // @ts-ignore
     this.details = this.router.getCurrentNavigation().extras.state;
 
-    // this.details = {
-    //   secondName: 'maina',
-    //   lastName: 'thaiku',
-    //   date: '1998-20-10',
-    //   idNumber: '35604512',
-    //   gender: 'M',
-    //   firstName: 'fredrick',
-    // };
+    this.details = {
+      secondName: 'maina',
+      lastName: 'thaiku',
+      date: '1998-20-10',
+      idNumber: '35604512',
+      gender: 'M',
+      firstName: 'fredrick',
+    };
 
     if (!this.details) {
       router.navigate(['/']).then();
@@ -210,7 +210,6 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
         frontImage.onload = () => {
           ctx.drawImage(frontImage, 25, 80, 110, 120);
         };
-        ctx.save();
       };
       console.log('i drew');
     }
@@ -314,10 +313,14 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
 
   downloadImage(): void {
     const canvas = this.idCanvas.nativeElement as HTMLCanvasElement;
-    const a = document.createElement('a');
-    a.href = canvas.toDataURL('image/png');
-    const side = this.idFront ? '-front' : '-back';
-    a.download = this.details.firstName + side;
-    a.click();
+
+    canvas.toBlob((blob) => {
+      const anchor = document.createElement('a');
+      anchor.href = URL.createObjectURL(blob);
+      const side = this.idFront ? '-front' : '-back';
+      anchor.download = this.details.firstName + side;
+      anchor.click();
+      URL.revokeObjectURL(anchor.href);
+    });
   }
 }
