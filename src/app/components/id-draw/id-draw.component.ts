@@ -25,6 +25,15 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     // @ts-ignore
     this.details = this.router.getCurrentNavigation().extras.state;
 
+    this.details = {
+      secondName: 'maina',
+      lastName: 'thaiku',
+      date: '1998-20-10',
+      idNumber: '35604512',
+      gender: 'M',
+      firstName: 'fredrick',
+    };
+
     if (!this.details) {
       router.navigate(['/']).then();
     }
@@ -136,6 +145,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.drawBackId();
+    // this.drawFrontId();
   }
 
   // Go back to details form
@@ -147,6 +157,9 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
   drawFrontId(): void {
     const canvas = this.idCanvas.nativeElement as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
+
+    // multiply used
+    const frontOffset = 138;
 
     const image = new Image();
     image.src = '../../../assets/idFront.png';
@@ -161,43 +174,43 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
 
       // ctx.clearRect(0, 0, canvas.width, canvas.height);
       image.onload = () => {
-        ctx.drawImage(image, 0, 0, 370, 245);
+        ctx.drawImage(image, 0, 0, 350, 214.633);
         ctx.font = 'ultra-condensed 800 14px data-font';
 
         // serial Number
-        ctx.fillText(this.serialNumber, 90, 55);
+        ctx.fillText(this.serialNumber, 80, 42);
 
         // ID number
-        ctx.fillText(this.details.idNumber, 263, 57);
+        ctx.fillText(this.details.idNumber, 246, 45);
 
         // name
-        ctx.fillText(this.name.toUpperCase(), 35, 80);
+        ctx.fillText(this.name.toUpperCase(), 26, 65);
 
         // D.O.B
-        ctx.fillText(this.dob, 150, 100);
+        ctx.fillText(this.dob, frontOffset, 85);
 
         // sex
-        ctx.fillText(this.gender.toUpperCase(), 150, 122);
+        ctx.fillText(this.gender.toUpperCase(), frontOffset, 105);
 
         // district
-        ctx.fillText(this.placeOfBirth.toUpperCase(), 150, 144);
+        ctx.fillText(this.placeOfBirth.toUpperCase(), frontOffset, 125);
 
         // place of issue
-        ctx.fillText(this.placeOfIssue.toUpperCase(), 150, 165);
+        ctx.fillText(this.placeOfIssue.toUpperCase(), frontOffset, 145);
 
         // date of issue
-        ctx.fillText(this.dateOfIssue, 150, 187);
+        ctx.fillText(this.dateOfIssue, frontOffset, 165);
 
         // signature
         ctx.font = 'bold 20px signature';
-        ctx.fillText(this.name.split(' ')[0], 170, 224);
+        ctx.fillText(this.name.split(' ')[0], 165, 200);
 
         // person image
         const frontImage = new Image();
         frontImage.src = this.currentImage;
 
         frontImage.onload = () => {
-          ctx.drawImage(frontImage, 37, 93, 110, 130);
+          ctx.drawImage(frontImage, 25, 80, 110, 120);
         };
         ctx.save();
       };
@@ -210,62 +223,83 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     const canvas = this.idCanvas.nativeElement as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
 
+    // common distance
+    const leftDataOffset = 34;
+
     const image = new Image();
     image.src = '../../../assets/idBack.png';
-    image.height = 250;
+    image.height = 214.633;
     // this.div.nativeElement.appendChild(image);
 
     if (!!ctx) {
-      ctx.rotate(0);
+      // ctx.fillStyle = 'rgba(0,0,0,0.9)';
 
       // clear the canvas first
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // draw id shell
       image.onload = () => {
-        ctx.drawImage(image, 0, 0, 370, 245);
-        ctx.font = 'ultra-condensed 900 13px data-font';
+        ctx.drawImage(image, 0, 0, 350, 214.633);
+        ctx.font = 'ultra-condensed 13px data-font';
+        ctx.fillStyle = 'rgba(0,0,0,0.9)';
         ctx.save();
 
         // district
-        ctx.fillText(this.currentLocation.district.toUpperCase(), 43, 55);
+        ctx.fillText(
+          this.currentLocation.district.toUpperCase(),
+          leftDataOffset,
+          45
+        );
 
         // division
-        ctx.fillText(this.currentLocation.division.toUpperCase(), 43, 77);
+        ctx.fillText(
+          this.currentLocation.division.toUpperCase(),
+          leftDataOffset,
+          64
+        );
 
         // location
-        ctx.fillText(this.currentLocation.location.toUpperCase(), 43, 98);
+        ctx.fillText(
+          this.currentLocation.location.toUpperCase(),
+          leftDataOffset,
+          83
+        );
 
         // sub-location
-        ctx.fillText(this.currentLocation.subLocation.toUpperCase(), 43, 120);
+        ctx.fillText(
+          this.currentLocation.subLocation.toUpperCase(),
+          leftDataOffset,
+          102
+        );
 
         // back image
         const backImage = new Image();
         backImage.src = this.currentImage;
 
         backImage.onload = () => {
-          ctx.drawImage(backImage, 161, 52, 55, 65);
+          ctx.drawImage(backImage, 141, 52, 40, 50);
         };
 
         // t-filler
-        ctx.font = 'ultra-condensed 800 15px data-font';
-        ctx.fillText(String(this.tFiller), 327, 144);
+        ctx.font = '100 15px data-font';
+        ctx.fillStyle = 'rgba(0,0,0,0.25)';
+        ctx.fillText(String(this.tFiller), 268, 132);
 
         // binder
-        // rotate for the text to align with the image
-        ctx.rotate(-Math.PI / 200);
-        ctx.font = 'ultra-expanded 800 15px binder-font';
+        const binderOffset = 12;
+        ctx.font = 'bold 15px binder-font';
+        ctx.fillStyle = 'rgba(0,0,0,0.7)';
 
         // first line
         const num = Math.floor(Math.random() * 10);
         const firstLine = 'IDKYA' + this.serialNumber + num + '<<3981<<<<<3982';
-        ctx.fillText(firstLine, 18, 184);
+        ctx.fillText(firstLine, binderOffset, 160);
 
         // second line
-        ctx.fillText(this.secondLine.toUpperCase(), 18, 205);
+        ctx.fillText(this.secondLine.toUpperCase(), binderOffset, 180);
 
         // third line
-        ctx.fillText(this.thirdLine.toUpperCase(), 18, 226);
+        ctx.fillText(this.thirdLine.toUpperCase(), binderOffset, 200);
 
         ctx.restore();
       };
@@ -280,5 +314,14 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     } else {
       this.drawBackId();
     }
+  }
+
+  downloadImage(): void {
+    const canvas = this.idCanvas.nativeElement as HTMLCanvasElement;
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    const side = this.idFront ? '-front' : '-back';
+    a.download = this.details.firstName + side;
+    a.click();
   }
 }

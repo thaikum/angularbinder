@@ -13,11 +13,14 @@
 .button-holder {
   display: flex;
   justify-content: space-around;
-  min-width: 200px;
+  width: 100%;
 }
 .canvas-holder {
   width: 400px;
   height: 75%;
   display: grid;
   place-items: center;
+}
+.idCanvas {
+  background-color: white;
 }

@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="canvas-holder">
-    <canvas class="idCanvas" #canvas width="370" height="250"></canvas>
+    <canvas class="idCanvas" #canvas width="350" height="214.633"></canvas>
   </div>
   <div class="button-holder">
     <button mat-raised-button color="accent" (click)="flipId()">
@@ -8,5 +8,8 @@
       Flip
     </button>
     <button mat-flat-button color="primary" (click)="goBack()">Back</button>
+    <button mat-mini-fab (click)="downloadImage()">
+      <mat-icon>download</mat-icon>
+    </button>
   </div>
 </div>
