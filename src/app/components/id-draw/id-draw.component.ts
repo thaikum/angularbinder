@@ -167,8 +167,6 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     // this.div.nativeElement.appendChild(image);
 
     if (!!ctx) {
-      ctx.rotate(0);
-
       // clear the canvas first
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -300,8 +298,6 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
 
         // third line
         ctx.fillText(this.thirdLine.toUpperCase(), binderOffset, 200);
-
-        ctx.restore();
       };
     }
   }
