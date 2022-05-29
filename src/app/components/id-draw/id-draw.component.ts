@@ -25,14 +25,14 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     // @ts-ignore
     this.details = this.router.getCurrentNavigation().extras.state;
 
-    this.details = {
-      secondName: 'maina',
-      lastName: 'thaiku',
-      date: '1998-20-10',
-      idNumber: '35604512',
-      gender: 'M',
-      firstName: 'fredrick',
-    };
+    // this.details = {
+    //   secondName: 'maina',
+    //   lastName: 'thaiku',
+    //   date: '1998-20-10',
+    //   idNumber: '35604512',
+    //   gender: 'M',
+    //   firstName: 'fredrick',
+    // };
 
     if (!this.details) {
       router.navigate(['/']).then();
