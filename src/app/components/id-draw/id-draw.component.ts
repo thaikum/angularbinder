@@ -25,14 +25,14 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
     // @ts-ignore
     this.details = this.router.getCurrentNavigation().extras.state;
 
-    this.details = {
-      secondName: 'maina',
-      lastName: 'thaiku',
-      date: '1998-20-10',
-      idNumber: '35604512',
-      gender: 'M',
-      firstName: 'fredrick',
-    };
+    // this.details = {
+    //   secondName: 'maina',
+    //   lastName: 'thaiku',
+    //   date: '1998-20-10',
+    //   idNumber: '35603894',
+    //   gender: 'M',
+    //   firstName: 'fredrick',
+    // };
 
     if (!this.details) {
       router.navigate(['/']).then();
@@ -70,15 +70,15 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
   @ViewChild('trial') div!: ElementRef;
 
   detailsFiller(): void {
-    const firstName = this.details.firstName;
-    let k = 8 - this.details.idNumber.length;
+    const firstName = this.details.firstName.trim();
+    let k = 8 - this.details.idNumber.trim().length;
     let zeros = '';
     while (k--) {
       zeros += '0';
     }
 
-    let secondName = this.details.secondName;
-    const lastName = this.details.lastName;
+    let secondName = this.details.secondName.trim();
+    const lastName = this.details.lastName.trim();
 
     const dateOfBirth = this.details.date;
     const idNumber = zeros + this.details.idNumber;
@@ -201,7 +201,7 @@ export class IdDrawComponent implements OnInit, AfterViewInit {
 
         // signature
         ctx.font = 'bold 20px signature';
-        ctx.fillText(this.name.split(' ')[0], 165, 200);
+        ctx.fillText(this.name.split(' ')[0].toLowerCase(), 165, 200);
 
         // person image
         const frontImage = new Image();
